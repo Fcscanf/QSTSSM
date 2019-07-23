@@ -26,7 +26,6 @@
 <%--检索功能检索框设计--%>
 <div>
     <select>
-        <option value="" name="id">ID</option>
         <option value="" name="name">Name</option>
         <option value="" name="email">Email</option>
         <option value="" name="phone">Phone</option>

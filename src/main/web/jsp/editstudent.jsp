@@ -17,6 +17,7 @@
     <base href="<%=basePath%>">
     <title>学生信息修改</title>
     <script>
+        <%--为更新按钮添加点击事件--%>
         function btnUpdate() {
             var id = document.getElementById("id").value;
             var name = document.getElementById("name").value;

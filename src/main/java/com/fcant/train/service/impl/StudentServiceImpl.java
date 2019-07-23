@@ -105,6 +105,20 @@ public class StudentServiceImpl implements StudentService {
     }
 
     /**
+     * 模糊查询
+     *
+     * @param student
+     * @return List<Student>
+     * @throws SQLException
+     * @author Fcscanf
+     * @date 上午 11:45 2019-07-23/0023
+     */
+    @Override
+    public List<Student> likeSelectStudent(Student student) throws SQLException {
+        return studentDao.likeSelectStudent(student);
+    }
+
+    /**
      * 校验邮箱 
      *
      * @param email

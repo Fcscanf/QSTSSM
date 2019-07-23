@@ -41,16 +41,7 @@ public class StudentDaoImpl implements StudentDao {
         String sql = "SELECT * from t_student s where s.name=?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, student.getName());
-        ResultSet resultSet = statement.executeQuery();
-        while (resultSet.next()) {
-            findStudent.setId(resultSet.getInt(1));
-            findStudent.setName(resultSet.getString(2));
-            findStudent.setEmail(resultSet.getString(3));
-            findStudent.setPhone(resultSet.getString(4));
-            findStudent.setQq(resultSet.getString(5));
-            log.info("Find Student : " + findStudent.toString());
-        }
-        return findStudent;
+        return commonStudent(statement);
     }
 
     /**
@@ -68,16 +59,7 @@ public class StudentDaoImpl implements StudentDao {
         String sql = "SELECT * from t_student s where s.id=?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, student.getId());
-        ResultSet resultSet = statement.executeQuery();
-        while (resultSet.next()) {
-            findStudent.setId(resultSet.getInt(1));
-            findStudent.setName(resultSet.getString(2));
-            findStudent.setEmail(resultSet.getString(3));
-            findStudent.setPhone(resultSet.getString(4));
-            findStudent.setQq(resultSet.getString(5));
-            log.info("Find Student : " + findStudent.toString());
-        }
-        return findStudent;
+        return commonStudent(statement);
     }
 
     /**
@@ -134,8 +116,65 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public List<Student> selectAllStudent() throws SQLException {
         String sql = "select * from t_student";
-        List<Student> students = new ArrayList<>();
         PreparedStatement statement = connection.prepareStatement(sql);
+        List<Student> students = commonListStudent(statement);
+        log.info("Query All Student Message : ");
+        for (Student student : students) {
+            log.info(student.toString());
+        }
+        return students;
+    }
+
+    /**
+     * 模糊查询
+     *
+     * @param student
+     * @return
+     * @throws SQLException
+     * @author Fcscanf
+     * @date 上午 11:45 2019-07-23/0023
+     */
+    @Override
+    public List<Student> likeSelectStudent(Student student) throws SQLException {
+        if (!(student.getId() == 0)) {
+            String sql = "select * from t_student s where s.id like concat('%',?,'%')";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, student.getId());
+            return commonListStudent(statement);
+        } else if (!student.getName().isEmpty()) {
+            String sql = "select * from t_student s where s.name like concat('%',?,'%')";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, student.getName());
+            return commonListStudent(statement);
+        } else if (!student.getEmail().isEmpty()) {
+            String sql = "select * from t_student s where s.email like ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, "%" + student.getEmail() + "%");
+            return commonListStudent(statement);
+        } else if (student.getPhone().isEmpty()) {
+            String sql = "select * from t_student s where s.phone like ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, "%" + student.getPhone() + "%");
+            return commonListStudent(statement);
+        } else {
+            String sql = "select * from t_student s where s.qq like ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, "%" + student.getQq() + "%");
+            return commonListStudent(statement);
+        }
+    }
+
+    /**
+     * 将查询到的学生信息集进行抽取公共方法
+     *
+     * @param statement
+     * @throws SQLException
+     * @return List<Student>
+     * @author Fcscanf
+     * @date 下午 12:08 2019-07-23/0023
+     */
+    public List<Student> commonListStudent(PreparedStatement statement) throws SQLException {
+        List<Student> students = new ArrayList<>();
         ResultSet resultSet = statement.executeQuery();
         while (resultSet.next()) {
             Student student = new Student();
@@ -146,10 +185,29 @@ public class StudentDaoImpl implements StudentDao {
             student.setQq(resultSet.getString(5));
             students.add(student);
         }
-        log.info("Query All Student Message : ");
-        for (Student student : students) {
-            log.info(student.toString());
-        }
         return students;
+    }
+
+    /**
+     * 将查询到的学生信息进行抽取
+     *
+     * @param statement
+     * @throws SQLException
+     * @return student
+     * @author Fcscanf
+     * @date 下午 12:09 2019-07-23/0023
+     */
+    public Student commonStudent(PreparedStatement statement) throws SQLException {
+        Student student = new Student();
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            student.setId(resultSet.getInt(1));
+            student.setName(resultSet.getString(2));
+            student.setEmail(resultSet.getString(3));
+            student.setPhone(resultSet.getString(4));
+            student.setQq(resultSet.getString(5));
+            log.info("Find Student : " + student.toString());
+        }
+        return student;
     }
 }

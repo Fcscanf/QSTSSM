@@ -54,4 +54,15 @@ public interface StudentService {
      * @date 下午 20:30 2019-07-22/0022
      */
     public List<Student> selectAllStudent() throws SQLException;
+
+    /**
+     * 模糊查询
+     *
+     * @param student
+     * @throws SQLException
+     * @return List<Student>
+     * @author Fcscanf
+     * @date 上午 11:45 2019-07-23/0023
+     */
+    public List<Student> likeSelectStudent(Student student) throws SQLException;
 }
