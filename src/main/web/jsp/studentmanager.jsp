@@ -23,7 +23,7 @@
     <h3>学生信息管理</h3>
 </div>
 <div>
-    <input value="请输入查询的内容"><button>Search</button>
+    <input onfocus="javascript:if(this.value=='请输入查询的内容')this.value='';" value="请输入查询的内容"><button>Search</button>
 </div>
 <div align="center">
     <table width="80%" border="1px" align="center" cellpadding="0"
