@@ -22,9 +22,21 @@
 <div align="center">
     <h3>学生信息管理</h3>
 </div>
+
+<%--检索功能检索框设计--%>
 <div>
-    <input onfocus="javascript:if(this.value=='请输入查询的内容')this.value='';" value="请输入查询的内容"><button>Search</button>
+    <select>
+        <option value="" name="id">ID</option>
+        <option value="" name="name">Name</option>
+        <option value="" name="email">Email</option>
+        <option value="" name="phone">Phone</option>
+        <option value="" name="qq">QQ</option>
+    </select>
+    <input onfocus="javascript:if(this.value=='请输入查询的内容')this.value='';" value="请输入查询的内容">
+    <button>Search</button>
 </div>
+
+<%--主体信息设计--%>
 <div align="center">
     <table width="80%" border="1px" align="center" cellpadding="0"
            cellspacing="0" class="table table-secondary">
@@ -53,6 +65,8 @@
         </tbody>
     </table>
 </div>
+
+<%--分页设计--%>
 <div align="right">
     每页显示<input width="10px">条数据
 </div>
