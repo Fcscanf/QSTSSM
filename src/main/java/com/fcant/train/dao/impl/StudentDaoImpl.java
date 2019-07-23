@@ -151,7 +151,7 @@ public class StudentDaoImpl implements StudentDao {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, "%" + student.getEmail() + "%");
             return commonListStudent(statement);
-        } else if (student.getPhone().isEmpty()) {
+        } else if (!student.getPhone().isEmpty()) {
             String sql = "select * from t_student s where s.phone like ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, "%" + student.getPhone() + "%");

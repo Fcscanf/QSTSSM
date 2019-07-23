@@ -19,7 +19,7 @@ import java.util.List;
 public class Test {
     public static void main(String[] args) throws SQLException {
         Student student = new Student();
-        student.setId(2);
+        student.setId(0);
         student.setName("");
         student.setEmail("");
         student.setPhone("");

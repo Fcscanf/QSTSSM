@@ -15,14 +15,21 @@ import java.util.List;
 
 /**
  * StudentServlet
- *
+ * <p>
  * encoding:UTF-8
+ *
  * @author Fcscanf
  * @date 上午 0:23 2019-07-23/0023
  */
 public class StudentServlet extends HttpServlet {
 
     StudentService studentService = new StudentServiceImpl();
+
+    private final String ID= "id";
+    private final String NAME= "name";
+    private final String EMAIL= "email";
+    private final String PHONE= "phone";
+    private final String QQ= "qq";
 
     /**
      * 进行Servlet反射处理多请求
@@ -86,14 +93,14 @@ public class StudentServlet extends HttpServlet {
     }
 
     /**
-     * 处理Student-Update请求 
+     * 处理Student-Update请求
      *
      * @param request
      * @param response
      * @throws SQLException
      * @throws ServletException
      * @author Fcscanf
-     * @date 上午 0:22 2019-07-23/0023 
+     * @date 上午 0:22 2019-07-23/0023
      */
     private void update(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         Student student = new Student();
@@ -111,15 +118,70 @@ public class StudentServlet extends HttpServlet {
      *
      * @param request
      * @param response
+     * @return
      * @throws SQLException
      * @throws ServletException
-     * @return
      * @author Fcscanf
      * @date 上午 11:14 2019-07-23/0023
      */
     private void getstuall(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         List<Student> students = studentService.selectAllStudent();
         request.setAttribute("students", students);
+        request.getRequestDispatcher("/jsp/studentmanager.jsp").forward(request, response);
+    }
+
+    /**
+     * 按条件检索查找
+     *
+     * @param request
+     * @param response
+     * @throws SQLException
+     * @throws ServletException
+     * @author Fcscanf
+     * @date 下午 16:24 2019-07-23/0023
+     */
+    private void query(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        Student student = new Student();
+        String selectType = request.getParameter("select");
+        String value = request.getParameter("value");
+        if (ID.equals(selectType)) {
+            student.setId(Integer.parseInt(value));
+            reLikeQuery(request, response, student);
+        } else if (NAME.equals(selectType)) {
+            student.setName(value);
+            reLikeQuery(request, response, student);
+        } else if (EMAIL.equals(selectType)) {
+            student.setName("");
+            student.setEmail(value);
+            reLikeQuery(request, response, student);
+        } else if (PHONE.equals(selectType)) {
+            student.setName("");
+            student.setEmail("");
+            student.setPhone(value);
+            reLikeQuery(request, response, student);
+        } else if (QQ.equals(selectType)) {
+            student.setName("");
+            student.setEmail("");
+            student.setPhone("");
+            student.setQq(value);
+            reLikeQuery(request, response, student);
+        }
+    }
+
+    /**
+     *  模糊查询返回的结果以及资源映射
+     *
+     * @param request
+     * @param response
+     * @param student
+     * @throws SQLException
+     * @throws IOException
+     * @throws ServletException
+     * @author Fcscanf
+     * @date 下午 17:07 2019-07-23/0023
+     */
+    private void reLikeQuery(HttpServletRequest request, HttpServletResponse response, Student student) throws SQLException, ServletException, IOException {
+        request.setAttribute("students", studentService.likeSelectStudent(student));
         request.getRequestDispatcher("/jsp/studentmanager.jsp").forward(request, response);
     }
 

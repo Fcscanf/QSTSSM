@@ -17,6 +17,13 @@
     <script src="<%=basePath%>jquery-3.3.1/jquery-3.3.1.min.js"></script>
     <base href="<%=basePath%>">
     <title>学生管理</title>
+    <script>
+        function query() {
+            var select = $("select").val();
+            var key = document.getElementById("key").value;
+            window.location.href = "<%=basePath%>query.action?select="+select+"&value="+key;
+        }
+    </script>
 </head>
 <body background="img/JadeFairyland.jpg">
 <div align="center">
@@ -26,13 +33,14 @@
 <%--检索功能检索框设计--%>
 <div>
     <select>
-        <option value="" name="name">Name</option>
-        <option value="" name="email">Email</option>
-        <option value="" name="phone">Phone</option>
-        <option value="" name="qq">QQ</option>
+        <option value="id" id="id">ID</option>
+        <option value="name" id="name">Name</option>
+        <option value="email" id="email">Email</option>
+        <option value="phone" id="phone">Phone</option>
+        <option value="qq" id="qq">QQ</option>
     </select>
-    <input onfocus="javascript:if(this.value=='请输入查询的内容')this.value='';" value="请输入查询的内容">
-    <button>Search</button>
+    <input id="key" onfocus="javascript:if(this.value=='请输入查询的内容')this.value='';" value="请输入查询的内容">
+    <button onclick="query()">Search</button>
 </div>
 
 <%--主体信息设计--%>
