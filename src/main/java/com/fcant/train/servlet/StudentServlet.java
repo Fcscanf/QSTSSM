@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * StudentServlet
@@ -103,8 +104,16 @@ public class StudentServlet extends HttpServlet {
         student.setPhone(request.getParameter("phone"));
         student.setQq(request.getParameter("qq"));
         studentService.updateStudent(student);
-        //信息更新完成并跳转到管理页面查看
-        request.setAttribute("students", studentService.selectAllStudent());
+    }
+
+    private void getstuall(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        List<Student> students = studentService.selectAllStudent();
+        request.setAttribute("students", students);
         request.getRequestDispatcher("/jsp/studentmanager.jsp").forward(request, response);
     }
+
+//    private void reeditstu(HttpServletRequest request, HttpServletResponse response) {
+//        request.setAttribute("student", student);
+//        request.getRequestDispatcher("/jsp/editstudent.jsp").forward(request, response);
+//    }
 }

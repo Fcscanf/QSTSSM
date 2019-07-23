@@ -17,13 +17,13 @@
     <base href="<%=basePath%>">
     <title>学生信息修改</title>
     <script>
-        $("#update").click(function () {
-            var id = document.getElementById("id");
-            var name = document.getElementById("name");
-            var email = document.getElementById("email");
-            var phone = document.getElementById("phone");
-            var qq = document.getElementById("qq");
-            $.ajax({
+        function btnUpdate() {
+            var id = document.getElementById("id").value;
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+            var qq = document.getElementById("qq").value;
+            $.post({
                 url: "<%=basePath%>update.action",
                 type: "post",
                 data: {
@@ -32,9 +32,12 @@
                     "email": email,
                     "phone": phone,
                     "qq": qq
+                },
+                success:function (data) {
+                    window.location.href = "<%=basePath%>getstuall.action";
                 }
             })
-        });
+        };
     </script>
 </head>
 <body background="img/PureRhythm.jpg">
@@ -66,7 +69,7 @@
         </tr>
         <tr align="center">
             <td width="50%"><input class="btn-danger" type="reset" value="重置"></td>
-            <td width="50%"><input class="btn-info" type="button" value="修改" name="update"/></td>
+            <td width="50%"><input class="btn-info" onclick="btnUpdate()" type="button" value="修改" id="update"></td>
         </tr>
     </table>
 </div>
