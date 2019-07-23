@@ -132,6 +132,7 @@ public class StudentServlet extends HttpServlet {
 
     /**
      * 按条件检索查找
+     * TODO:此处赋值需要优化
      *
      * @param request
      * @param response
@@ -166,6 +167,23 @@ public class StudentServlet extends HttpServlet {
             student.setQq(value);
             reLikeQuery(request, response, student);
         }
+    }
+
+    /**
+     * 分页查询
+     *
+     * @param request
+     * @param response
+     * @throws SQLException
+     * @throws ServletException
+     * @author Fcscanf
+     * @date 下午 18:38 2019-07-23/0023
+     */
+    private void pageQuery(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        int start = Integer.parseInt(request.getParameter("start"));
+        int end = Integer.parseInt(request.getParameter("end"));
+        request.setAttribute("students", studentService.pageQueryStudent(start, end));
+        request.getRequestDispatcher("/jsp/studentmanager.jsp").forward(request, response);
     }
 
     /**

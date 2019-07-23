@@ -165,6 +165,25 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     /**
+     * 分页查询数据
+     *
+     * @param start
+     * @param end
+     * @return List<Student>
+     * @throws SQLException
+     * @author Fcscanf
+     * @date 下午 18:24 2019-07-23/0023
+     */
+    @Override
+    public List<Student> pageQueryStudent(int start, int end) throws SQLException {
+        String sql = "select * from t_student limit ?,?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, start);
+        statement.setInt(2, end);
+        return commonListStudent(statement);
+    }
+
+    /**
      * 将查询到的学生信息集进行抽取公共方法
      *
      * @param statement

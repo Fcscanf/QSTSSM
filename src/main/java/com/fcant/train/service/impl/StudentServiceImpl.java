@@ -119,6 +119,21 @@ public class StudentServiceImpl implements StudentService {
     }
 
     /**
+     * 分页查询数据
+     *
+     * @param start
+     * @param end
+     * @return List<Student>
+     * @throws SQLException
+     * @author Fcscanf
+     * @date 下午 18:24 2019-07-23/0023
+     */
+    @Override
+    public List<Student> pageQueryStudent(int start, int end) throws SQLException {
+        return studentDao.pageQueryStudent(start, end);
+    }
+
+    /**
      * 校验邮箱 
      *
      * @param email

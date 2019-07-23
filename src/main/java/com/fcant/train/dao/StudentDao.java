@@ -79,4 +79,16 @@ public interface StudentDao {
      * @date 上午 11:45 2019-07-23/0023
      */
     public List<Student> likeSelectStudent(Student student) throws SQLException;
+
+    /**
+     * 分页查询数据
+     *
+     * @param start
+     * @param end
+     * @throws SQLException
+     * @return List<Student>
+     * @author Fcscanf
+     * @date 下午 18:24 2019-07-23/0023
+     */
+    public List<Student> pageQueryStudent(int start, int end) throws SQLException;
 }

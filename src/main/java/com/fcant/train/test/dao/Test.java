@@ -18,14 +18,8 @@ import java.util.List;
  */
 public class Test {
     public static void main(String[] args) throws SQLException {
-        Student student = new Student();
-        student.setId(0);
-        student.setName("");
-        student.setEmail("");
-        student.setPhone("");
-        student.setQq("");
         StudentService studentService = new StudentServiceImpl();
-        List<Student> students = studentService.likeSelectStudent(student);
+        List<Student> students = studentService.pageQueryStudent(0,4);
         for (Student student1 : students) {
             System.out.println(student1.toString());
         }
