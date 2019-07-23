@@ -1,5 +1,6 @@
 package com.fcant.train.service.impl;
 
+import com.fcant.train.bean.Page;
 import com.fcant.train.bean.Student;
 import com.fcant.train.dao.StudentDao;
 import com.fcant.train.dao.impl.StudentDaoImpl;
@@ -121,16 +122,15 @@ public class StudentServiceImpl implements StudentService {
     /**
      * 分页查询数据
      *
-     * @param start
-     * @param end
+     * @param page
      * @return List<Student>
      * @throws SQLException
      * @author Fcscanf
      * @date 下午 18:24 2019-07-23/0023
      */
     @Override
-    public List<Student> pageQueryStudent(int start, int end) throws SQLException {
-        return studentDao.pageQueryStudent(start, end);
+    public List<Student> pageQueryStudent(Page page) throws SQLException {
+        return studentDao.pageQueryStudent(page);
     }
 
     /**

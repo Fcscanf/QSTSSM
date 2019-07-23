@@ -35,7 +35,6 @@ public class UserServlet extends HttpServlet {
             // 执行相应的方法
             method.invoke(this, request, response);
         } catch (Exception e) {
-            // TODO: handle exception
         }
     }
 
@@ -65,9 +64,9 @@ public class UserServlet extends HttpServlet {
                 // 登录成功后存储用户信息
                 request.getSession().invalidate();
                 request.getSession().setAttribute("user", user);
-                request.setAttribute("students", studentService.selectAllStudent());
-                request.getRequestDispatcher("/jsp/studentmanager.jsp").forward(request, response);
-                //response.sendRedirect(request.getContextPath() + "/jsp/studentmanager.jsp");
+                //request.setAttribute("students", studentService.selectAllStudent());
+                //request.getRequestDispatcher("/jsp/studentmanager.jsp").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/pageQuery.action?size=5&option=0");
             } else {
                 response.sendRedirect(request.getContextPath() + "/jsp/userlogin.jsp");
             }

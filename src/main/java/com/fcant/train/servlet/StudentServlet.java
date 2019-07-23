@@ -1,5 +1,6 @@
 package com.fcant.train.servlet;
 
+import com.fcant.train.bean.Page;
 import com.fcant.train.bean.Student;
 import com.fcant.train.service.StudentService;
 import com.fcant.train.service.impl.StudentServiceImpl;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -24,6 +26,11 @@ import java.util.List;
 public class StudentServlet extends HttpServlet {
 
     StudentService studentService = new StudentServiceImpl();
+
+    HashMap<String, Page> PAGE_MESSAGE = new HashMap<>();
+
+    private final String optionNext = "next";
+    private final String optionPre = "pro";
 
     private final String ID= "id";
     private final String NAME= "name";
@@ -55,7 +62,6 @@ public class StudentServlet extends HttpServlet {
             // 执行相应的方法
             method.invoke(this, request, response);
         } catch (Exception e) {
-            // TODO: handle exception
         }
     }
 
@@ -171,6 +177,7 @@ public class StudentServlet extends HttpServlet {
 
     /**
      * 分页查询
+     * TODO:查询时要判断操作起始页越界以及出现页面条数为不合法数据的情况
      *
      * @param request
      * @param response
@@ -180,9 +187,44 @@ public class StudentServlet extends HttpServlet {
      * @date 下午 18:38 2019-07-23/0023
      */
     private void pageQuery(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-        int start = Integer.parseInt(request.getParameter("start"));
-        int end = Integer.parseInt(request.getParameter("end"));
-        request.setAttribute("students", studentService.pageQueryStudent(start, end));
+        Page page = new Page();
+        String option = request.getParameter("option");
+        int start = 0;
+        int userSetPageSize = Integer.parseInt(request.getParameter("size"));
+        page.setSize(userSetPageSize);
+        if (optionNext.equals(option)) {
+            Page curPage = PAGE_MESSAGE.get("1");
+            curPage.setStart(curPage.getStart() + userSetPageSize);
+            PAGE_MESSAGE.put("1", curPage);
+            rePageQuery(request, response, curPage);
+        } else if (optionPre.equals(option)) {
+            Page curPage = PAGE_MESSAGE.get("1");
+            curPage.setStart(curPage.getStart() - userSetPageSize);
+            PAGE_MESSAGE.put("1", curPage);
+            rePageQuery(request, response, curPage);
+        } else {
+            page.setStart(start);
+            page.setSize(Integer.parseInt(request.getParameter("size")));
+            PAGE_MESSAGE.put("1", page);
+            rePageQuery(request, response, page);
+        }
+    }
+
+    /**
+     * 分页查询返回
+     *
+     * @param request
+     * @param response
+     * @param page
+     * @throws SQLException
+     * @throws ServletException
+     * @throws IOException
+     * @author Fcscanf
+     * @date 下午 23:51 2019-07-23/0023
+     */
+    private void rePageQuery(HttpServletRequest request, HttpServletResponse response, Page page) throws SQLException, ServletException, IOException {
+        List<Student> students = studentService.pageQueryStudent(page);
+        request.setAttribute("students", students);
         request.getRequestDispatcher("/jsp/studentmanager.jsp").forward(request, response);
     }
 

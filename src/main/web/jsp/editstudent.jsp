@@ -35,7 +35,7 @@
                     "qq": qq
                 },
                 success:function (data) {
-                    window.location.href = "<%=basePath%>getstuall.action";
+                    window.location.href = "<%=basePath%>pageQuery.action?size=5&option=0";
                 }
             })
         };

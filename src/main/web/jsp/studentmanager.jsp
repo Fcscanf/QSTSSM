@@ -18,10 +18,21 @@
     <base href="<%=basePath%>">
     <title>学生管理</title>
     <script>
+        <%--按条件检索--%>
         function query() {
             var select = $("select").val();
             var key = document.getElementById("key").value;
             window.location.href = "<%=basePath%>query.action?select="+select+"&value="+key;
+        }
+
+        <%--分页查询--%>
+        function pageQueryNext() {
+            var size = document.getElementById("size").value;
+            window.location.href = "<%=basePath%>pageQuery.action?size="+size+"&option=next";
+        }
+        function pageQueryPre() {
+            var size = document.getElementById("size").value;
+            window.location.href = "<%=basePath%>pageQuery.action?size="+size+"&option=pro";
         }
     </script>
 </head>
@@ -75,7 +86,7 @@
 
 <%--分页设计--%>
 <div align="right">
-    每页显示<input width="10px">条数据
+    每页显示<input id="size" value="4" width="10px">条数据<button onclick="pageQueryPre()">上一页</button><button onclick="pageQueryNext()">下一页</button>
 </div>
 </body>
 </html>

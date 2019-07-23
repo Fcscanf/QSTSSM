@@ -1,5 +1,6 @@
 package com.fcant.train.dao.impl;
 
+import com.fcant.train.bean.Page;
 import com.fcant.train.bean.Student;
 import com.fcant.train.dao.StudentDao;
 import com.fcant.train.utils.JDBCUtils;
@@ -167,19 +168,18 @@ public class StudentDaoImpl implements StudentDao {
     /**
      * 分页查询数据
      *
-     * @param start
-     * @param end
+     * @param page
      * @return List<Student>
      * @throws SQLException
      * @author Fcscanf
      * @date 下午 18:24 2019-07-23/0023
      */
     @Override
-    public List<Student> pageQueryStudent(int start, int end) throws SQLException {
+    public List<Student> pageQueryStudent(Page page) throws SQLException {
         String sql = "select * from t_student limit ?,?";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, start);
-        statement.setInt(2, end);
+        statement.setInt(1, page.getStart());
+        statement.setInt(2, page.getStart()+page.getSize());
         return commonListStudent(statement);
     }
 

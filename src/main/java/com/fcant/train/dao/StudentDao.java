@@ -1,5 +1,6 @@
 package com.fcant.train.dao;
 
+import com.fcant.train.bean.Page;
 import com.fcant.train.bean.Student;
 
 import java.sql.SQLException;
@@ -83,12 +84,11 @@ public interface StudentDao {
     /**
      * 分页查询数据
      *
-     * @param start
-     * @param end
+     * @param page
      * @throws SQLException
      * @return List<Student>
      * @author Fcscanf
      * @date 下午 18:24 2019-07-23/0023
      */
-    public List<Student> pageQueryStudent(int start, int end) throws SQLException;
+    public List<Student> pageQueryStudent(Page page) throws SQLException;
 }
