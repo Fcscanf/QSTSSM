@@ -106,6 +106,17 @@ public class StudentServlet extends HttpServlet {
         studentService.updateStudent(student);
     }
 
+    /**
+     * 获取所有学生信息
+     *
+     * @param request
+     * @param response
+     * @throws SQLException
+     * @throws ServletException
+     * @return
+     * @author Fcscanf
+     * @date 上午 11:14 2019-07-23/0023
+     */
     private void getstuall(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         List<Student> students = studentService.selectAllStudent();
         request.setAttribute("students", students);
