@@ -25,18 +25,42 @@
             window.location.href = "<%=basePath%>query.action?select="+select+"&value="+key;
         }
 
-        <%--分页查询--%>
+        <%--分页查询-下一页--%>
         function pageQueryNext() {
             var size = document.getElementById("size").value;
             window.location.href = "<%=basePath%>pageQuery.action?size="+size+"&option=next";
         }
+
+        //分页查询-上一页
         function pageQueryPre() {
             var size = document.getElementById("size").value;
             window.location.href = "<%=basePath%>pageQuery.action?size="+size+"&option=pro";
         }
 
-        function add() {
+        //添加学生
+        function addStu() {
             window.location.href = "<%=basePath%>jsp/addstu.jsp"
+        }
+
+        //删除学生
+        function deleteStu(delId) {
+            if (confirm("确认删除ID为【" + delId + "】的学生吗？")) {
+                $.ajax({
+                    url:"<%=basePath%>delete.action?id="+delId,
+                    type:"post",
+                    success:function (data) {
+                        window.location.href = "<%=basePath%>pageQuery.action?size=5&option=0";
+                    }
+                })
+            }
+        }
+
+        //修改学生信息
+        function editStu(id) {
+            if (confirm("确认修改学号【" + id + "】的学生吗？")) {
+                window.location.href = "<%=basePath%>edit.action?id="+id;
+            }
+
         }
     </script>
 </head>
@@ -58,7 +82,7 @@
     <button onclick="query()">Search</button>
 </div>
 <div align="right">
-    <button class="btn-warning" onclick="add()">添加学生信息</button>
+    <button class="btn-warning" onclick="addStu()">添加学生信息</button>
 </div>
 
 <%--主体信息设计--%>
@@ -83,8 +107,8 @@
                 <td>${student.email}</td>
                 <td>${student.phone}</td>
                 <td>${student.qq}</td>
-                <td><a href="edit.action?param=0&id=${student.id}">编辑</a>
-                    <a href="delete.action?id=${student.id}">删除</a></td>
+                <td><a onclick="editStu(${student.id})">编辑</a>
+                    <a onclick="deleteStu(${student.id})">删除</a></td>
             </tr>
         </c:forEach>
         </tbody>
