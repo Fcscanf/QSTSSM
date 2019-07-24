@@ -1,7 +1,9 @@
 package com.fcant.mybatis.ch01.test;
 
+import com.fcant.mybatis.ch01.bean.Classes;
 import com.fcant.mybatis.ch01.bean.Order;
 import com.fcant.mybatis.ch01.bean.User;
+import com.fcant.mybatis.ch01.mapper.ClassesMapper;
 import com.fcant.mybatis.ch01.mapper.OrderMapper;
 import com.fcant.mybatis.ch01.mapper.UserMapper;
 import org.apache.ibatis.session.SqlSession;
@@ -32,7 +34,7 @@ public class MybatisUtil {
      */
     public static SqlSession initMybatis() {
         // mybatis的配置文件
-        String resource = "mybatis/ch01/mybatis.xml";
+        String resource = "mybatis/ch01/mybatis-config.xml";
         // 使用类加载器加载mybatis的配置文件（它也加载关联的映射文件）
         InputStream reader = MybatisUtil.class.getClassLoader().getResourceAsStream(resource);
         // 构建sqlSession的工厂
@@ -44,6 +46,27 @@ public class MybatisUtil {
         // 创建能执行映射文件中sql的sqlSession
         SqlSession session = sessionFactory.openSession();
         return session;
+    }
+
+    public static void oneToOneAccClsQuTe(SqlSession session) {
+        // 通过getMapper()方法获取ClassMapper接口
+        ClassesMapper classMapper = session.getMapper(ClassesMapper.class);
+        Classes classes = new Classes();
+
+        // 查询class表中id为1的记录,执行查询操作，将查询结果自动封装成Classes返回
+        classes = classMapper.getClass(1);
+        // 打印结果：Classes [id=1, name=class_a, teacher=Teacher [id=1,
+        // name=teacher1]]
+        System.out.println(classes);
+
+        // 查询class表中id为1的记录
+        classes = classMapper.getClassNest(1);
+        // 打印结果：Classes [id=1, name=class_a, teacher=Teacher [id=1,
+        // name=teacher1]]
+        System.out.println(classes);
+
+        // 使用SqlSession执行完SQL之后需要关闭SqlSession
+        session.close();
     }
 
     public static void testOrderMapper(SqlSession session) {
