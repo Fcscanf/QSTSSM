@@ -83,8 +83,8 @@
                 <td>${student.email}</td>
                 <td>${student.phone}</td>
                 <td>${student.qq}</td>
-                <td><a href="edit.action?param=0&id=${student.id}">编辑</a> <a
-                        href="delete.action?id=${student.id}">删除</a></td>
+                <td><a href="edit.action?param=0&id=${student.id}">编辑</a>
+                    <a href="delete.action?id=${student.id}">删除</a></td>
             </tr>
         </c:forEach>
         </tbody>

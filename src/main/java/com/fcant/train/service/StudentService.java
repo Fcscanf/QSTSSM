@@ -80,4 +80,15 @@ public interface StudentService {
      * @date 下午 18:24 2019-07-23/0023
      */
     public List<Student> pageQueryStudent(Page page) throws SQLException;
+
+    /**
+     * 删除学生
+     *
+     * @param student
+     * @throws SQLException
+     * @return int
+     * @author Fcscanf
+     * @date 上午 11:31 2019-07-24/0024
+     */
+    public int deleteStu(Student student) throws SQLException;
 }

@@ -134,6 +134,20 @@ public class StudentServiceImpl implements StudentService {
     }
 
     /**
+     * 删除学生
+     *
+     * @param student
+     * @return int
+     * @throws SQLException
+     * @author Fcscanf
+     * @date 上午 11:31 2019-07-24/0024
+     */
+    @Override
+    public int deleteStu(Student student) throws SQLException {
+        return studentDao.deleteStu(student);
+    }
+
+    /**
      * 校验邮箱 
      *
      * @param email

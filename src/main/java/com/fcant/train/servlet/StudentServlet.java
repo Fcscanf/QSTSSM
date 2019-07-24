@@ -80,6 +80,31 @@ public class StudentServlet extends HttpServlet {
         doPost(request, response);
     }
 
+    /**
+     * 删除学生信息
+     *
+     * @param request
+     * @param response
+     * @throws SQLException
+     * @author Fcscanf
+     * @date 上午 11:44 2019-07-24/0024 
+     */
+    private void delete(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        Student student = new Student();
+        int delId = Integer.parseInt(request.getParameter("id"));
+        student.setId(delId);
+        studentService.deleteStu(student);
+        // TODO:删除后要分页进行主界面-未完善
+    }
+    /**
+     * 添加学生信息
+     *
+     * @param request
+     * @param response
+     * @throws SQLException
+     * @author Fcscanf
+     * @date 上午 11:41 2019-07-24/0024
+     */
     private void add(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
         Student student = new Student();
         student.setName(request.getParameter("name"));

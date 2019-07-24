@@ -184,6 +184,23 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     /**
+     * 删除学生
+     *
+     * @param student
+     * @return int
+     * @throws SQLException
+     * @author Fcscanf
+     * @date 上午 11:31 2019-07-24/0024
+     */
+    @Override
+    public int deleteStu(Student student) throws SQLException {
+        String sql = "delete from t_student s where s.id=?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, student.getId());
+        return statement.executeUpdate();
+    }
+
+    /**
      * 将查询到的学生信息集进行抽取公共方法
      *
      * @param statement
