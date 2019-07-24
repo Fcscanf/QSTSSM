@@ -11,13 +11,12 @@
     </select>
 
     <!-- 根据id查询得到一个user对象 -->
-    <select id="getById" parameterType="int"
-            resultType="com.fcant.mybatis.ch01.bean.User">
+    <select id="getById" parameterType="int" resultType="_User">
         select * from m_users where id=#{id}
     </select>
 
     <!-- 创建用户(Create) -->
-    <insert id="add" parameterType="com.fcant.mybatis.ch01.bean.User">
+    <insert id="add" parameterType="_User">
         insert into m_users(name,age)
         values(#{name},#{age})
     </insert>
@@ -29,13 +28,13 @@
     </delete>
 
     <!-- 修改用户(Update) -->
-    <update id="update" parameterType="com.fcant.mybatis.ch01.bean.User">
+    <update id="update" parameterType="_User">
         update m_users set
         name=#{name},age=#{age} where id=#{id}
     </update>
 
     <!-- 查询全部用户 -->
-    <select id="getAll" resultType="com.fcant.mybatis.ch01.bean.User">
+    <select id="getAll" resultType="_User">
         select * from m_users
     </select>
 </mapper>

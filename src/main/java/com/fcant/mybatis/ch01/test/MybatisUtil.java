@@ -1,7 +1,7 @@
 package com.fcant.mybatis.ch01.test;
 
 import com.fcant.mybatis.ch01.bean.User;
-import com.fcant.mybatis.ch01.mapper.UserMapperAnno;
+import com.fcant.mybatis.ch01.mapper.UserMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -44,9 +44,9 @@ public class MybatisUtil {
         return session;
     }
 
-    public static void testMapperAnno(SqlSession session) {
+    public static void testMapper(SqlSession session) {
         // 通过getMapper()方法获取UserMapper接口
-        UserMapperAnno userMapper = session.getMapper(UserMapperAnno.class);
+        UserMapper userMapper = session.getMapper(UserMapper.class);
         User user = new User();
 
         /*
