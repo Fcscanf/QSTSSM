@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 @Slf4j
 public class UserServlet extends HttpServlet {
@@ -21,6 +22,8 @@ public class UserServlet extends HttpServlet {
     UserService userService = new UserServiceImpl();
 
     StudentService studentService = new StudentServiceImpl();
+
+    Logger logger = Logger.getLogger(UserServlet.class.getName());
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -61,6 +64,7 @@ public class UserServlet extends HttpServlet {
         try {
             if (userService.checkUser(user)) {
                 log.info("登录成功！");
+                logger.info("Login Success!");
                 // 登录成功后存储用户信息
                 request.getSession().invalidate();
                 request.getSession().setAttribute("user", user);
