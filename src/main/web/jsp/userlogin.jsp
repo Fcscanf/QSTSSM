@@ -24,8 +24,8 @@
 <div align="center" style="margin-top: 70px">
     <h2>用户登录</h2>
 </div>
-<div class="text-danger">
-    <h3>${msg}</h3>
+<div class="text-danger" align="center">
+    <h5>${msg}</h5>
 </div>
 <div align="center" style="margin-top: 30px" class="container">
     <div style="align-self: center">
