@@ -1,6 +1,8 @@
 package com.fcant.mybatis.ch01.test;
 
+import com.fcant.mybatis.ch01.bean.Order;
 import com.fcant.mybatis.ch01.bean.User;
+import com.fcant.mybatis.ch01.mapper.OrderMapper;
 import com.fcant.mybatis.ch01.mapper.UserMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -44,7 +46,26 @@ public class MybatisUtil {
         return session;
     }
 
-    public static void testMapper(SqlSession session) {
+    public static void testOrderMapper(SqlSession session) {
+        OrderMapper orderMapper = session.getMapper(OrderMapper.class);
+
+        // 普通查询-查询orders表中id为1的记录,执行查询操作，将查询结果自动封装成Order返回
+        Order orderOri = orderMapper.getOrderById(1);
+        // 打印结果：null，也就是没有查询出相应的记录
+        System.out.println("普通SQL查询 ：" + orderOri);
+
+        // 执行查询操作，将查询结果自动封装成Order返回（SQL查询语句采用别名）
+        Order order = orderMapper.selectOrder(1);
+        // 打印结果：Order [id=1, orderNo=aaaa, price=23.0]
+        System.out.println("采用别名查询 ：" + order);
+
+        // 执行查询操作，将查询结果自动封装成Order返回（采用resultMap进行配置）
+        Order byPrimaryKey = orderMapper.selectByPrimaryKey(1);
+        System.out.println("以ResultMap封装查询 ：" + byPrimaryKey);
+
+    }
+
+    public static void testUserMapper(SqlSession session) {
         // 通过getMapper()方法获取UserMapper接口
         UserMapper userMapper = session.getMapper(UserMapper.class);
         User user = new User();

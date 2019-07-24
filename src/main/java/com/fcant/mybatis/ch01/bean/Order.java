@@ -1,5 +1,8 @@
 package com.fcant.mybatis.ch01.bean;
 
+import lombok.Data;
+
+@Data
 public class Order {
     /**
      *
