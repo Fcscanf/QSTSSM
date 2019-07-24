@@ -48,6 +48,26 @@ public class MybatisUtil {
         return session;
     }
 
+    public static void oneToMany(SqlSession session) {
+        // 通过getMapper()方法获取ClassMapper接口
+        ClassesMapper classMapper = session.getMapper(ClassesMapper.class);
+
+        /** 根据id,查询用户信息 **/
+        // 查询class表中id为1的记录,执行查询操作，将查询结果自动封装成Classes返回
+        Classes classThree = classMapper.getClassThree(1);
+        // 打印结果：Classes [id=1, name=class_a, teacher=Teacher [id=1, name=teacher1], students=[Student [id=1, name=student_A], Student [id=2, name=student_B], Student [id=3, name=student_C]]]
+        System.out.println(classThree);
+
+        /** 根据id,查询用户信息 **/
+        // 查询class表中id为1的记录
+        Classes classFour = classMapper.getClassFour(1);
+        // 打印结果：Classes [id=1, name=class_a, teacher=Teacher [id=1, name=teacher1], students=[Student [id=1, name=student_A], Student [id=2, name=student_B], Student [id=3, name=student_C]]]
+        System.out.println(classFour);
+
+        // 使用SqlSession执行完SQL之后需要关闭SqlSession
+        session.close();
+    }
+
     public static void oneToOneAccClsQuTe(SqlSession session) {
         // 通过getMapper()方法获取ClassMapper接口
         ClassesMapper classMapper = session.getMapper(ClassesMapper.class);

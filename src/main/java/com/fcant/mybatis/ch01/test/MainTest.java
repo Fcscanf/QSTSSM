@@ -17,6 +17,7 @@ public class MainTest {
         //MybatisUtil.mybatisOneTest(sqlSession);
         //MybatisUtil.testUserMapper(sqlSession);
         //MybatisUtil.testOrderMapper(sqlSession);
-        MybatisUtil.oneToOneAccClsQuTe(sqlSession);
+        //MybatisUtil.oneToOneAccClsQuTe(sqlSession);
+        MybatisUtil.oneToMany(sqlSession);
     }
 }
