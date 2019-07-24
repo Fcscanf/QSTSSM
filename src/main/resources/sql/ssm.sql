@@ -11,7 +11,7 @@
  Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 24/07/2019 22:57:49
+ Date: 24/07/2019 23:13:55
 */
 
 SET NAMES utf8mb4;
@@ -72,6 +72,27 @@ CREATE TABLE `orders`  (
 INSERT INTO `orders` VALUES (1, 'aaaa', 23);
 INSERT INTO `orders` VALUES (2, 'bbbb', 33);
 INSERT INTO `orders` VALUES (3, 'cccc', 22);
+
+-- ----------------------------
+-- Table structure for student
+-- ----------------------------
+DROP TABLE IF EXISTS `student`;
+CREATE TABLE `student`  (
+  `s_id` int(11) NOT NULL AUTO_INCREMENT,
+  `s_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `class_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`s_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of student
+-- ----------------------------
+INSERT INTO `student` VALUES (1, 'student_A', 1);
+INSERT INTO `student` VALUES (2, 'student_B', 1);
+INSERT INTO `student` VALUES (3, 'student_C', 1);
+INSERT INTO `student` VALUES (4, 'student_D', 2);
+INSERT INTO `student` VALUES (5, 'student_E', 2);
+INSERT INTO `student` VALUES (6, 'student_F', 2);
 
 -- ----------------------------
 -- Table structure for t_student
