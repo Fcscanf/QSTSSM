@@ -80,6 +80,14 @@ public class StudentServlet extends HttpServlet {
         doPost(request, response);
     }
 
+    private void add(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+        Student student = new Student();
+        student.setName(request.getParameter("name"));
+        student.setEmail(request.getParameter("email"));
+        student.setPhone(request.getParameter("phone"));
+        student.setQq(request.getParameter("qq"));
+        studentService.addStudent(student);
+    }
     /**
      * 处理student编辑请求，将student信息查询完整并回显至页面
      *

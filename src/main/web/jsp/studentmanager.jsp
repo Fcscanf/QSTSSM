@@ -34,6 +34,10 @@
             var size = document.getElementById("size").value;
             window.location.href = "<%=basePath%>pageQuery.action?size="+size+"&option=pro";
         }
+
+        function add() {
+            window.location.href = "<%=basePath%>jsp/addstu.jsp"
+        }
     </script>
 </head>
 <body background="img/JadeFairyland.jpg">
@@ -52,6 +56,9 @@
     </select>
     <input id="key" onfocus="javascript:if(this.value=='请输入查询的内容')this.value='';" value="请输入查询的内容">
     <button onclick="query()">Search</button>
+</div>
+<div align="right">
+    <button class="btn-warning" onclick="add()">添加学生信息</button>
 </div>
 
 <%--主体信息设计--%>
