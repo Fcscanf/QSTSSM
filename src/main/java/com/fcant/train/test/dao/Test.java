@@ -20,6 +20,6 @@ public class Test {
         Student student = new Student();
         student.setId(13);
         StudentDao studentDao = new StudentDaoImpl();
-        System.out.println(studentDao.deleteStu(student));
+        System.out.println(studentDao.tableTotal());
     }
 }

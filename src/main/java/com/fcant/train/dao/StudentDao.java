@@ -102,4 +102,14 @@ public interface StudentDao {
      * @date 上午 11:31 2019-07-24/0024
      */
     public int deleteStu(Student student) throws SQLException;
+
+    /**
+     * 查询表的总条目数
+     *
+     * @return int
+     * @throws SQLException
+     * @author Fcscanf
+     * @date 下午 15:30 2019-07-24/0024
+     */
+    public int tableTotal() throws SQLException;
 }

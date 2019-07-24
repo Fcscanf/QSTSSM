@@ -24,6 +24,9 @@
 <div align="center" style="margin-top: 70px">
     <h2>用户登录</h2>
 </div>
+<div class="text-danger">
+    <h3>${msg}</h3>
+</div>
 <div align="center" style="margin-top: 30px" class="container">
     <div style="align-self: center">
         <form action="<%=basePath%>login.do" method="post">

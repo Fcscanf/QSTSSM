@@ -148,6 +148,19 @@ public class StudentServiceImpl implements StudentService {
     }
 
     /**
+     * 查询表的总条目数
+     *
+     * @return int
+     * @throws SQLException
+     * @author Fcscanf
+     * @date 下午 15:30 2019-07-24/0024
+     */
+    @Override
+    public int tableTotal() throws SQLException {
+        return studentDao.tableTotal();
+    }
+
+    /**
      * 校验邮箱 
      *
      * @param email

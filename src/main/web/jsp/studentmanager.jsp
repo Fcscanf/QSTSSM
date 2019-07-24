@@ -63,6 +63,12 @@
 
         }
     </script>
+
+    <style>
+        a {color:black;}
+        a:hover {color:red;}
+    </style>
+
 </head>
 <body background="img/JadeFairyland.jpg">
 <div align="center">

@@ -222,22 +222,33 @@ public class StudentServlet extends HttpServlet {
     private void pageQuery(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         Page page = new Page();
         String option = request.getParameter("option");
+        page.setSize(Integer.parseInt(request.getParameter("size")));
         int start = 0;
         int userSetPageSize = Integer.parseInt(request.getParameter("size"));
         page.setSize(userSetPageSize);
         if (optionNext.equals(option)) {
+            int tableTotal = studentService.tableTotal();
             Page curPage = PAGE_MESSAGE.get("1");
-            curPage.setStart(curPage.getStart() + userSetPageSize);
+            if (curPage.getStart() + userSetPageSize >= tableTotal) {
+                curPage.setStart(tableTotal - userSetPageSize);
+            } else {
+                curPage.setStart(curPage.getStart() + userSetPageSize);
+            }
             PAGE_MESSAGE.put("1", curPage);
             rePageQuery(request, response, curPage);
         } else if (optionPre.equals(option)) {
             Page curPage = PAGE_MESSAGE.get("1");
-            curPage.setStart(curPage.getStart() - userSetPageSize);
+            int result = curPage.getStart() - userSetPageSize;
+            if (result <= 0) {
+                curPage.setStart(0);
+            } else {
+                curPage.setStart(result);
+            }
+            curPage.setSize(userSetPageSize);
             PAGE_MESSAGE.put("1", curPage);
             rePageQuery(request, response, curPage);
         } else {
             page.setStart(start);
-            page.setSize(Integer.parseInt(request.getParameter("size")));
             PAGE_MESSAGE.put("1", page);
             rePageQuery(request, response, page);
         }

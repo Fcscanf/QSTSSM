@@ -201,6 +201,26 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     /**
+     * 查询表的总条目数
+     *
+     * @return int
+     * @throws SQLException
+     * @author Fcscanf
+     * @date 下午 15:30 2019-07-24/0024
+     */
+    @Override
+    public int tableTotal() throws SQLException {
+        String sql = "select count(*) from t_student";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet resultSet = statement.executeQuery();
+        int result = 0;
+        while (resultSet.next()) {
+            result = resultSet.getInt(1);
+        }
+        return result;
+    }
+
+    /**
      * 将查询到的学生信息集进行抽取公共方法
      *
      * @param statement

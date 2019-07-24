@@ -73,6 +73,7 @@ public class UserServlet extends HttpServlet {
                 // TODO:完成登录后执行分页查询进入管理页面-查询是写死的
                 response.sendRedirect(request.getContextPath() + "/pageQuery.action?size=5&option=0");
             } else {
+                // TODO:登录错误信息提示-待完善
                 response.sendRedirect(request.getContextPath() + "jsp/userlogin.jsp");
             }
         } catch (SQLException e) {
