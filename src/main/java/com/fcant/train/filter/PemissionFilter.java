@@ -18,6 +18,12 @@ import java.io.IOException;
  * @date 上午 0:51 2019-07-24/0024
  */
 public class PemissionFilter implements Filter {
+
+    /**
+     * 定义不需要拦截的URL放进String数组中
+     */
+    private final String[] URI = {"/jsp/userlogin.jsp", "/jsp/userreg.jsp"
+            , "/login.do", "/reg.do"};
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -34,10 +40,7 @@ public class PemissionFilter implements Filter {
         // 获取登录状态
         User user = (User) session.getAttribute("user");
         /* 判断是否是登录页、首页、登录servlet */
-        if (servletPath != null && ("/jsp/userlogin.jsp".equals(servletPath) ||
-                "/jsp/userreg.jsp".equals(servletPath) ||
-                "/login.do".equals(servletPath) ||
-                "/reg.do".equals(servletPath))) {
+        if (isPassUrl(servletPath)) {
             // 是则直接转发到下一组件
             chain.doFilter(request, response);
         } else {
@@ -57,5 +60,25 @@ public class PemissionFilter implements Filter {
     @Override
     public void destroy() {
 
+    }
+
+    /**
+     * 判断是不是允许通过的URL请求,如果是则返回true
+     *
+     * @param servletPath
+     * @return true
+     * @author Fcscanf
+     * @date 上午 8:41 2019-07-24/0024 
+     */
+    private boolean isPassUrl(String servletPath) {
+        if (servletPath != null) {
+            for (String url : URI) {
+                if (url.equals(servletPath)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        return false;
     }
 }
