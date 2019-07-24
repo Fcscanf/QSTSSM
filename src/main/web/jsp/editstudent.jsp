@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <link href="<%=basePath%>/bootstrap-4.1.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=basePath%>bootstrap-4.1.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="<%=basePath%>jquery-3.3.1/jquery-3.3.1.min.js"></script>
     <base href="<%=basePath%>">
     <title>学生信息修改</title>

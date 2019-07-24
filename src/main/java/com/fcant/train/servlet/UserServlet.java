@@ -68,7 +68,7 @@ public class UserServlet extends HttpServlet {
                 //request.getRequestDispatcher("/jsp/studentmanager.jsp").forward(request, response);
                 response.sendRedirect(request.getContextPath() + "/pageQuery.action?size=5&option=0");
             } else {
-                response.sendRedirect(request.getContextPath() + "/jsp/userlogin.jsp");
+                response.sendRedirect(request.getContextPath() + "jsp/userlogin.jsp");
             }
         } catch (SQLException e) {
             e.printStackTrace();

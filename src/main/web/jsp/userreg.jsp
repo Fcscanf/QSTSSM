@@ -19,7 +19,7 @@
 </head>
 <body background="img/DancingRibbon.jpg">
 <div align="right">
-    已有帐号？请点击<a href="<%=basePath%>/jsp/userlogin.jsp">登录</a>进入系统
+    已有帐号？请点击<a href="<%=basePath%>jsp/userlogin.jsp">登录</a>进入系统
 </div>
 <div align="center" style="margin-top: 70px">
     <h2>用户注册</h2>
