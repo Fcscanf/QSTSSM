@@ -70,6 +70,7 @@ public class UserServlet extends HttpServlet {
                 request.getSession().setAttribute("user", user);
                 //request.setAttribute("students", studentService.selectAllStudent());
                 //request.getRequestDispatcher("/jsp/studentmanager.jsp").forward(request, response);
+                // TODO:完成登录后执行分页查询进入管理页面-查询是写死的
                 response.sendRedirect(request.getContextPath() + "/pageQuery.action?size=5&option=0");
             } else {
                 response.sendRedirect(request.getContextPath() + "jsp/userlogin.jsp");

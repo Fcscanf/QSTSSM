@@ -20,6 +20,7 @@ public interface StudentService {
      * 查找学生
      *
      * @param student
+     * @throws SQLException
      * @return student
      * @author Fcscanf
      * @date 下午 14:48 2019-07-22/0022
@@ -30,6 +31,8 @@ public interface StudentService {
      * 添加学生
      *
      * @param student
+     * @throws SQLException
+     * @return true
      * @author Fcscanf
      * @date 下午 14:49 2019-07-22/0022
      */

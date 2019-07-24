@@ -35,6 +35,7 @@
                     "qq": qq
                 },
                 success:function (data) {
+                    // TODO:完成修改后执行分页查询进入管理页面-查询是写死的
                     window.location.href = "<%=basePath%>pageQuery.action?size=5&option=0";
                 }
             })
