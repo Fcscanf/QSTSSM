@@ -1,7 +1,7 @@
 package com.fcant.mybatis.ch01.test;
 
 import com.fcant.mybatis.ch01.bean.User;
-import com.fcant.mybatis.ch01.mapper.UserMapper;
+import com.fcant.mybatis.ch01.mapper.UserMapperAnno;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -44,9 +44,9 @@ public class MybatisUtil {
         return session;
     }
 
-    public static void testMapper(SqlSession session) {
+    public static void testMapperAnno(SqlSession session) {
         // 通过getMapper()方法获取UserMapper接口
-        UserMapper userMapper = session.getMapper(UserMapper.class);
+        UserMapperAnno userMapper = session.getMapper(UserMapperAnno.class);
         User user = new User();
 
         /*
@@ -89,6 +89,10 @@ public class MybatisUtil {
         session.commit();
         // 使用SqlSession执行完SQL之后需要关闭SqlSession
         session.close();
+    }
+
+    public void testFun(SqlSession session, Object o) {
+
     }
 
     /**

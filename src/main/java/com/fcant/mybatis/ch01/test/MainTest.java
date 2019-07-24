@@ -15,6 +15,6 @@ public class MainTest {
     public static void main(String[] args) {
         SqlSession sqlSession = MybatisUtil.initMybatis();
         //MybatisUtil.mybatisOneTest(sqlSession);
-        MybatisUtil.testMapper(sqlSession);
+        MybatisUtil.testMapperAnno(sqlSession);
     }
 }
