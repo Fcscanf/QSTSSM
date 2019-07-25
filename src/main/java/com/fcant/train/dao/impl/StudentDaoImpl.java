@@ -46,7 +46,7 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     /**
-     * 根据姓名查找学生
+     * 根据ID查找学生
      *
      * @param student
      * @return student
@@ -179,7 +179,7 @@ public class StudentDaoImpl implements StudentDao {
         String sql = "select * from t_student limit ?,?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, page.getStart());
-        statement.setInt(2, page.getStart()+page.getSize());
+        statement.setInt(2, page.getEnd());
         return commonListStudent(statement);
     }
 

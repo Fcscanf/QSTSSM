@@ -222,10 +222,8 @@ public class StudentServlet extends HttpServlet {
     private void pageQuery(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         Page page = new Page();
         String option = request.getParameter("option");
-        page.setSize(Integer.parseInt(request.getParameter("size")));
         int start = 0;
         int userSetPageSize = Integer.parseInt(request.getParameter("size"));
-        page.setSize(userSetPageSize);
         if (optionNext.equals(option)) {
             int tableTotal = studentService.tableTotal();
             Page curPage = PAGE_MESSAGE.get("1");
@@ -234,6 +232,7 @@ public class StudentServlet extends HttpServlet {
             } else {
                 curPage.setStart(curPage.getStart() + userSetPageSize);
             }
+            page.setEnd(start + userSetPageSize);
             PAGE_MESSAGE.put("1", curPage);
             rePageQuery(request, response, curPage);
         } else if (optionPre.equals(option)) {
@@ -244,11 +243,12 @@ public class StudentServlet extends HttpServlet {
             } else {
                 curPage.setStart(result);
             }
-            curPage.setSize(userSetPageSize);
+            page.setEnd(start + userSetPageSize);
             PAGE_MESSAGE.put("1", curPage);
             rePageQuery(request, response, curPage);
         } else {
             page.setStart(start);
+            page.setEnd(start + userSetPageSize);
             PAGE_MESSAGE.put("1", page);
             rePageQuery(request, response, page);
         }

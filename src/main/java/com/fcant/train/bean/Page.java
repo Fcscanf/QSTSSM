@@ -14,5 +14,5 @@ import lombok.Data;
 @Data
 public class Page {
     private int start;
-    private int size;
+    private int end;
 }
