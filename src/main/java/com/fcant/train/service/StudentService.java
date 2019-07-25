@@ -3,6 +3,7 @@ package com.fcant.train.service;
 import com.fcant.train.bean.Page;
 import com.fcant.train.bean.Student;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public interface StudentService {
      * @author Fcscanf
      * @date 下午 14:48 2019-07-22/0022
      */
-    public Student findStudent(Student student) throws SQLException;
+    public Student findStudent(Student student) throws SQLException, IOException;
 
     /**
      * 添加学生
@@ -36,7 +37,7 @@ public interface StudentService {
      * @author Fcscanf
      * @date 下午 14:49 2019-07-22/0022
      */
-    public boolean addStudent(Student student) throws SQLException;
+    public boolean addStudent(Student student) throws SQLException, IOException;
 
     /**
      * 更新学生信息
@@ -47,7 +48,7 @@ public interface StudentService {
      * @author Fcscanf
      * @date 下午 15:38 2019-07-22/0022
      */
-    public boolean updateStudent(Student student) throws SQLException;
+    public boolean updateStudent(Student student) throws SQLException, IOException;
 
     /**
      * 查询所有学生信息
@@ -57,7 +58,7 @@ public interface StudentService {
      * @author Fcscanf
      * @date 下午 20:30 2019-07-22/0022
      */
-    public List<Student> selectAllStudent() throws SQLException;
+    public List<Student> selectAllStudent() throws SQLException, IOException;
 
     /**
      * 模糊查询
@@ -68,7 +69,7 @@ public interface StudentService {
      * @author Fcscanf
      * @date 上午 11:45 2019-07-23/0023
      */
-    public List<Student> likeSelectStudent(Student student) throws SQLException;
+    public List<Student> likeSelectStudent(Student student) throws SQLException, IOException;
 
     /**
      * 分页查询数据
@@ -79,7 +80,7 @@ public interface StudentService {
      * @author Fcscanf
      * @date 下午 18:24 2019-07-23/0023
      */
-    public List<Student> pageQueryStudent(Page page) throws SQLException;
+    public List<Student> pageQueryStudent(Page page) throws SQLException, IOException;
 
     /**
      * 删除学生
@@ -90,7 +91,7 @@ public interface StudentService {
      * @author Fcscanf
      * @date 上午 11:31 2019-07-24/0024
      */
-    public int deleteStu(Student student) throws SQLException;
+    public int deleteStu(Student student) throws SQLException, IOException;
 
     /**
      * 查询表的总条目数
@@ -100,5 +101,5 @@ public interface StudentService {
      * @author Fcscanf
      * @date 下午 15:30 2019-07-24/0024
      */
-    public int tableTotal() throws SQLException;
+    public int tableTotal() throws SQLException, IOException;
 }

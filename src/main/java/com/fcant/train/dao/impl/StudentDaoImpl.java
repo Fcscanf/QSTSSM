@@ -221,7 +221,7 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     /**
-     * 将查询到的学生信息集进行抽取公共方法
+     * 将查询到的学生赋值进行抽取公共方法
      *
      * @param statement
      * @throws SQLException
@@ -245,7 +245,7 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     /**
-     * 将查询到的学生信息进行抽取
+     * 将查询到的学生信息赋值进行抽取
      *
      * @param statement
      * @throws SQLException

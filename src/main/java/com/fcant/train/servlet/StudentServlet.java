@@ -86,10 +86,11 @@ public class StudentServlet extends HttpServlet {
      * @param request
      * @param response
      * @throws SQLException
+     * @throws IOException
      * @author Fcscanf
      * @date 上午 11:44 2019-07-24/0024 
      */
-    private void delete(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    private void delete(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
         Student student = new Student();
         int delId = Integer.parseInt(request.getParameter("id"));
         student.setId(delId);
@@ -102,6 +103,8 @@ public class StudentServlet extends HttpServlet {
      * @param request
      * @param response
      * @throws SQLException
+     * @throws ServletException
+     * @throws IOException
      * @author Fcscanf
      * @date 上午 11:41 2019-07-24/0024
      */
@@ -120,6 +123,7 @@ public class StudentServlet extends HttpServlet {
      * @param response
      * @throws ServletException
      * @throws SQLException
+     * @throws IOException
      * @author Fcscanf
      * @date 下午 23:53 2019-07-22/0022
      */
@@ -138,6 +142,7 @@ public class StudentServlet extends HttpServlet {
      * @param response
      * @throws SQLException
      * @throws ServletException
+     * @throws IOException
      * @author Fcscanf
      * @date 上午 0:22 2019-07-23/0023
      */
@@ -157,7 +162,7 @@ public class StudentServlet extends HttpServlet {
      *
      * @param request
      * @param response
-     * @return
+     * @throws IOException
      * @throws SQLException
      * @throws ServletException
      * @author Fcscanf
@@ -177,6 +182,7 @@ public class StudentServlet extends HttpServlet {
      * @param response
      * @throws SQLException
      * @throws ServletException
+     * @throws IOException
      * @author Fcscanf
      * @date 下午 16:24 2019-07-23/0023
      */
@@ -216,6 +222,7 @@ public class StudentServlet extends HttpServlet {
      * @param response
      * @throws SQLException
      * @throws ServletException
+     * @throws IOException
      * @author Fcscanf
      * @date 下午 18:38 2019-07-23/0023
      */

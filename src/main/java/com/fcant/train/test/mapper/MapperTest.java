@@ -15,8 +15,9 @@ import java.io.IOException;
  * @date 上午 11:24 2019-07-25/0025
  */
 public class MapperTest {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException{
         SqlSession sqlSession = MybatisUtil.initMybatis();
-        MybatisUtil.userMapperFind(sqlSession);
+        //MybatisUtil.userMapperFind(sqlSession);
+        MybatisUtil.testStuMapper(sqlSession);
     }
 }

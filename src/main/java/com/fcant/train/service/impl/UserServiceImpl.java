@@ -38,8 +38,7 @@ public class UserServiceImpl implements UserService {
         SqlSession sqlSession = MybatisUtil.initMybatis();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         User user = mapper.findUser(username);
-        sqlSession.commit();
-        sqlSession.close();
+        closeSqlSession(sqlSession);
         return user;
     }
 
@@ -75,6 +74,17 @@ public class UserServiceImpl implements UserService {
         SqlSession sqlSession = MybatisUtil.initMybatis();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         mapper.addUser(user);
+        closeSqlSession(sqlSession);
+    }
+
+    /**
+     * 提交以及关闭SqlSession
+     *
+     * @param sqlSession
+     * @author Fcscanf
+     * @date 下午 19:05 2019-07-25/0025
+     */
+    public void closeSqlSession(SqlSession sqlSession) {
         sqlSession.commit();
         sqlSession.close();
     }

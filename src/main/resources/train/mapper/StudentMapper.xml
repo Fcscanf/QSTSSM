@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名，这样就能够保证namespace的值是唯一的
+    例如namespace="com.nt.mybatis.mapping.userMapper"就是com.nt.mybatis.mapping(包名)+userMapper(userMapper.xml文件去除后缀) -->
+<mapper namespace="com.fcant.train.mapper.StudentMapper">
+    <resultMap id="reStudent" type="com.fcant.train.bean.Student">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="email" column="email"></result>
+        <result property="phone" column="phone"></result>
+        <result property="qq" column="qq"></result>
+    </resultMap>
+
+    <select id="findStudentByName" parameterType="com.fcant.train.bean.Student"
+            resultType="com.fcant.train.bean.Student">
+        SELECT * from t_student s where s.name=#{name,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findStudentById" parameterType="com.fcant.train.bean.Student"
+            resultType="com.fcant.train.bean.Student">
+        SELECT * from t_student s where s.id=#{id}
+    </select>
+
+    <insert id="addStudent" parameterType="com.fcant.train.bean.Student">
+        insert into t_student(name, email, phone, qq)
+        values (#{name,jdbcType=VARCHAR} , #{email,jdbcType=VARCHAR} , #{phone,jdbcType=VARCHAR} , #{qq,jdbcType=VARCHAR} )
+    </insert>
+
+    <update id="updateStudent" parameterType="com.fcant.train.bean.Student">
+        update t_student s
+        set s.name=#{name,jdbcType=VARCHAR} ,s.email=#{email,jdbcType=VARCHAR} ,s.phone=#{phone,jdbcType=VARCHAR} ,s.qq=#{qq,jdbcType=VARCHAR}
+        where s.id=#{id}
+    </update>
+
+    <select id="selectAllStudent" resultMap="reStudent">
+        select * from t_student
+    </select>
+
+    <select id="likeSelectStudentById" parameterType="com.fcant.train.bean.Student"
+            resultMap="reStudent">
+        select * from t_student s where s.id like concat('%',#{id},'%')
+    </select>
+
+    <select id="likeSelectStudentByName" parameterType="com.fcant.train.bean.Student"
+            resultMap="reStudent">
+        select * from t_student s where s.name like concat('%',#{name,jdbcType=VARCHAR} ,'%')
+    </select>
+
+    <select id="likeSelectStudentByEmail" parameterType="com.fcant.train.bean.Student"
+            resultMap="reStudent">
+        select * from t_student s where s.email like concat('%', #{email,jdbcType=VARCHAR},'%')
+    </select>
+
+    <select id="likeSelectStudentByPhone" parameterType="com.fcant.train.bean.Student"
+            resultMap="reStudent">
+        select * from t_student s where s.phone like concat('%', #{phone,jdbcType=VARCHAR} ,'%')
+    </select>
+
+    <select id="likeSelectStudentByQq" parameterType="com.fcant.train.bean.Student"
+            resultMap="reStudent">
+        select * from t_student s where s.qq like concat('%', #{qq,jdbcType=VARCHAR},'%')
+    </select>
+
+    <select id="pageQueryStudent" parameterType="com.fcant.train.bean.Page"
+            resultMap="reStudent">
+        select * from t_student limit #{start} ,#{end}
+    </select>
+
+    <delete id="deleteStu" parameterType="com.fcant.train.bean.Page">
+        delete from t_student s where s.id=#{id}
+    </delete>
+
+    <select id="tableTotal" resultType="java.lang.Integer">
+        select count(*) from t_student
+    </select>
+
+</mapper>
