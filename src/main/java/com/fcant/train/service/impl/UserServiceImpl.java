@@ -3,8 +3,12 @@ package com.fcant.train.service.impl;
 import com.fcant.train.bean.User;
 import com.fcant.train.dao.UserDao;
 import com.fcant.train.dao.impl.UserDaoImpl;
+import com.fcant.train.mapper.UserMapper;
 import com.fcant.train.service.UserService;
+import com.fcant.train.utils.MybatisUtil;
+import org.apache.ibatis.session.SqlSession;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 /**
@@ -29,8 +33,14 @@ public class UserServiceImpl implements UserService {
      * @date 上午 10:35 2019-07-22/0022
      */
     @Override
-    public User findUser(String username) throws SQLException {
-        return userDao.findUser(username);
+    public User findUser(String username) throws SQLException, IOException {
+        //return userDao.findUser(username);
+        SqlSession sqlSession = MybatisUtil.initMybatis();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        User user = mapper.findUser(username);
+        sqlSession.commit();
+        sqlSession.close();
+        return user;
     }
 
     /**
@@ -42,7 +52,7 @@ public class UserServiceImpl implements UserService {
      * @date 上午 10:35 2019-07-22/0022
      */
     @Override
-    public boolean checkUser(User user) throws SQLException {
+    public boolean checkUser(User user) throws SQLException, IOException {
         User findUser = findUser(user.getUname());
         if (findUser.getPassword().equals(user.getPassword())) {
             return true;
@@ -60,7 +70,12 @@ public class UserServiceImpl implements UserService {
      * @date 下午 14:25 2019-07-22/0022
      */
     @Override
-    public void addUser(User user) throws SQLException {
-        userDao.addUser(user);
+    public void addUser(User user) throws SQLException, IOException {
+        //userDao.addUser(user);
+        SqlSession sqlSession = MybatisUtil.initMybatis();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        mapper.addUser(user);
+        sqlSession.commit();
+        sqlSession.close();
     }
 }
