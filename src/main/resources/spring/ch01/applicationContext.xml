@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+   http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/aop
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+   http://www.springframework.org/schema/tx
+   http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <bean name="c" class="com.fcant.spring.ch01.di_ioc.bean.Category">
+        <property name="name" value="category 1" />
+    </bean>
+
+    <bean name="product" class="com.fcant.spring.ch01.di_ioc.bean.Product">
+        <property name="name" value="Apple Watch" />
+        <property name="number" value="2" />
+        <property name="price" value="8800" />
+        <property name="category" ref="c" />
+    </bean>
+
+</beans>
