@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名，这样就能够保证namespace的值是唯一的
+    例如namespace="com.nt.mybatis.mapping.userMapper"就是com.nt.mybatis.mapping(包名)+userMapper(userMapper.xml文件去除后缀) -->
+<mapper namespace="com.fcant.mybatis.ch02.mapper.UserMapper">
+    <!-- 在select标签中编写查询的SQL语句， 设置select标签的id属性为getUser，id属性值必须是唯一的，不能够重复.使用parameterType属性指明查询时使用的参数类型，resultType属性指明查询返回的结果集类型
+        resultType="com.nt.mybatis.entity.User"就表示将查询结果封装成一个User类的对象返回 User类就是users表所对应的实体类 -->
+    <!-- 根据id查询一个用户信息 -->
+    <select id="selectUserById" parameterType="Integer" resultType="User">
+		select * from users where id = #{id}
+	</select>
+    <!-- 查询所有用户信息 -->
+    <select id="selectAllUser" resultType="User">
+        select * from users where 1=1
+        <if test="name !=null and name!=''">
+            and `name` like concat('%',#{name},'%')
+        </if>
+    </select>
+    <!-- 添加一个用户 ，#{name}为User的属性值 -->
+    <insert id="addUser" parameterType="User">
+		insert into users (name,sex)
+		values(#{name},#{sex})
+	</insert>
+    <!-- 修改一个用户 -->
+    <update id="updateUser" parameterType="User">
+		update users set name =
+		#{name},sex = #{sex} where id = #{id}
+	</update>
+    <!-- 删除一个用户 -->
+    <delete id="deleteUser" parameterType="Integer">
+		delete from users where id
+		= #{id}
+	</delete>
+    <!-- 使用if元素，根据条件动态查询用户信息 -->
+    <select id="selectUserByIf" resultType="User" parameterType="User">
+        select * from users where 1=1
+        <if test="name !=null and name!=''">
+            and name like concat('%',#{name},'%')
+        </if>
+        <if test="sex !=null and sex!=''">
+            and sex = #{sex}
+        </if>
+    </select>
+    <!-- 使用choose、when、otherwise元素，根据条件动态查询用户信息 -->
+    <select id="selectUserByChoose" resultType="User" parameterType="User">
+        select * from users where 1=1
+        <choose>
+            <when test="name !=null and name!=''">
+                and name like concat('%',#{name},'%')
+            </when>
+            <when test="sex !=null and sex!=''">
+                and sex = #{sex}
+            </when>
+            <otherwise>
+                and id > 10
+            </otherwise>
+        </choose>
+    </select>
+    <!-- 使用trim元素，根据条件动态查询用户信息 -->
+    <select id="selectUserByTrim" resultType="User" parameterType="User">
+        select * from users
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="name !=null and name!=''">
+                and name like concat('%',#{name},'%')
+            </if>
+            <if test="sex !=null and sex!=''">
+                and sex = #{sex}
+            </if>
+        </trim>
+    </select>
+    <!-- 使用where元素，根据条件动态查询用户信息 -->
+    <select id="selectUserByWhere" resultType="User" parameterType="User">
+        select * from users
+        <where>
+            <if test="name !=null and name!=''">
+                and name like concat('%',#{name},'%')
+            </if>
+            <if test="sex !=null and sex!=''">
+                and sex = #{sex}
+            </if>
+        </where>
+    </select>
+    <!-- 使用set元素，动态修改一个用户 -->
+    <update id="updateUserBySet" parameterType="User">
+        update users
+        <set>
+            <if test="name != null">name=#{name},</if>
+            <if test="sex != null">sex=#{sex}</if>
+        </set>
+        where id = #{id}
+    </update>
+    <!-- 使用foreach元素，查询用户信息 -->
+    <select id="selectUserByForeach" resultType="User"
+            parameterType="List">
+        select * from users where id in
+        <foreach item="item" index="index" collection="list" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+    <!-- 使用bind元素进行模糊查询 -->
+    <select id="selectUserByBind" resultType="User" parameterType="User">
+        <!-- bind中name是User的属性名 -->
+        <bind name="paran_name" value="'%' + name + '%'" />
+        select * from users where name like #{paran_name}
+    </select>
+</mapper>
