@@ -16,6 +16,9 @@ import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
+/**
+ * @author fcsca
+ */
 @Slf4j
 public class UserServlet extends HttpServlet {
 
@@ -74,7 +77,7 @@ public class UserServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/pageQuery.action?size=5&option=0");
             } else {
                 // TODO:登录错误信息提示-待完善
-                response.sendRedirect(request.getContextPath() + "jsp/userlogin.jsp");
+                response.sendRedirect(request.getContextPath() + "/jsp/userlogin.jsp");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -98,6 +101,7 @@ public class UserServlet extends HttpServlet {
         user.setUname(request.getParameter("username"));
         user.setPassword(request.getParameter("password"));
         userService.addUser(user);
-        login(request, response);
+        request.setAttribute("msg", "您已注册成功，请登录！");
+        request.getRequestDispatcher("/jsp/userlogin.jsp").forward(request, response);
     }
 }
