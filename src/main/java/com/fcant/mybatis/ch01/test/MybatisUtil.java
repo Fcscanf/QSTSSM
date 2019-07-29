@@ -114,35 +114,35 @@ public class MybatisUtil {
         User user = new User();
 
         /*
-        * 新增用户信息
-        * **/
+         * 新增用户信息
+         * **/
         user.setName("test001");
         user.setAge(22);
         userMapper.add(user);
 
         /*
-        * 根据id,查询用户信息
-        * **/
+         * 根据id,查询用户信息
+         * **/
         // 执行查询操作，将查询结果自动封装成User返回
         user = userMapper.getById(2);
         System.out.println(user.getName());
 
         /*
-        * 根据id,更新用户信息
-        * **/
+         * 根据id,更新用户信息
+         * **/
         user.setId(2);
         user.setName("李四");
         user.setAge(26);
         userMapper.update(user);
 
         /*
-        * 根据id,删除用户信息
-        * **/
+         * 根据id,删除用户信息
+         * **/
         userMapper.deleteById(8);
 
         /*
-        * 查询所有的用户
-        * **/
+         * 查询所有的用户
+         * **/
         List<User> userList = new ArrayList<User>();
         // 执行查询操作，将查询结果自动封装成List<User>返回
         userList = userMapper.getAll();

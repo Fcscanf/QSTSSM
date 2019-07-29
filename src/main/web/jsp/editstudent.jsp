@@ -18,6 +18,7 @@
     <title>学生信息修改</title>
     <script>
         <%--为更新按钮添加点击事件--%>
+
         function btnUpdate() {
             var id = document.getElementById("id").value;
             var name = document.getElementById("name").value;
@@ -28,13 +29,13 @@
                 url: "<%=basePath%>update.action",
                 type: "post",
                 data: {
-                    "id":id,
-                    "name":name,
+                    "id": id,
+                    "name": name,
                     "email": email,
                     "phone": phone,
                     "qq": qq
                 },
-                success:function (data) {
+                success: function (data) {
                     // TODO:完成修改后执行分页查询进入管理页面-查询是写死的
                     window.location.href = "<%=basePath%>pageQuery.action?size=5&option=0";
                 }

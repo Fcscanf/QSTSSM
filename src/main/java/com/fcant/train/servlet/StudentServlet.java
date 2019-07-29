@@ -32,11 +32,11 @@ public class StudentServlet extends HttpServlet {
     private final String optionNext = "next";
     private final String optionPre = "pro";
 
-    private final String ID= "id";
-    private final String NAME= "name";
-    private final String EMAIL= "email";
-    private final String PHONE= "phone";
-    private final String QQ= "qq";
+    private final String ID = "id";
+    private final String NAME = "name";
+    private final String EMAIL = "email";
+    private final String PHONE = "phone";
+    private final String QQ = "qq";
 
     /**
      * 进行Servlet反射处理多请求
@@ -88,7 +88,7 @@ public class StudentServlet extends HttpServlet {
      * @throws SQLException
      * @throws IOException
      * @author Fcscanf
-     * @date 上午 11:44 2019-07-24/0024 
+     * @date 上午 11:44 2019-07-24/0024
      */
     private void delete(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
         Student student = new Student();
@@ -97,6 +97,7 @@ public class StudentServlet extends HttpServlet {
         studentService.deleteStu(student);
         // TODO:删除后要分页进行主界面-未完善
     }
+
     /**
      * 添加学生信息
      *
@@ -116,6 +117,7 @@ public class StudentServlet extends HttpServlet {
         student.setQq(request.getParameter("qq"));
         studentService.addStudent(student);
     }
+
     /**
      * 处理student编辑请求，将student信息查询完整并回显至页面
      *
@@ -131,7 +133,7 @@ public class StudentServlet extends HttpServlet {
         Student student = new Student();
         student.setId(Integer.parseInt(request.getParameter("id")));
         Student reStudent = studentService.findStudent(student);
-        request.setAttribute("student", reStudent);
+        request.setAttribute("student" , reStudent);
         request.getRequestDispatcher("/jsp/editstudent.jsp").forward(request, response);
     }
 
@@ -170,7 +172,7 @@ public class StudentServlet extends HttpServlet {
      */
     private void getstuall(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         List<Student> students = studentService.selectAllStudent();
-        request.setAttribute("students", students);
+        request.setAttribute("students" , students);
         request.getRequestDispatcher("/jsp/studentmanager.jsp").forward(request, response);
     }
 
@@ -238,7 +240,7 @@ public class StudentServlet extends HttpServlet {
             }
             curPage.setSize(userSetPageSize);
             curPage.setEnd(curPage.getStart() + curPage.getSize());
-            PAGE_MESSAGE.put("1", curPage);
+            PAGE_MESSAGE.put("1" , curPage);
             rePageQuery(request, response, curPage);
         } else if (optionPre.equals(option)) {
             Page curPage = PAGE_MESSAGE.get("1");
@@ -250,14 +252,14 @@ public class StudentServlet extends HttpServlet {
             }
             curPage.setSize(userSetPageSize);
             curPage.setEnd(curPage.getStart() + userSetPageSize);
-            PAGE_MESSAGE.put("1", curPage);
+            PAGE_MESSAGE.put("1" , curPage);
             rePageQuery(request, response, curPage);
         } else {
             Page page = new Page();
             page.setStart(0);
             page.setEnd(userSetPageSize);
             page.setSize(userSetPageSize);
-            PAGE_MESSAGE.put("1", page);
+            PAGE_MESSAGE.put("1" , page);
             rePageQuery(request, response, page);
         }
     }
@@ -276,12 +278,12 @@ public class StudentServlet extends HttpServlet {
      */
     private void rePageQuery(HttpServletRequest request, HttpServletResponse response, Page page) throws SQLException, ServletException, IOException {
         List<Student> students = studentService.pageQueryStudent(page);
-        request.setAttribute("students", students);
+        request.setAttribute("students" , students);
         request.getRequestDispatcher("/jsp/studentmanager.jsp").forward(request, response);
     }
 
     /**
-     *  模糊查询返回的结果以及资源映射
+     * 模糊查询返回的结果以及资源映射
      *
      * @param request
      * @param response
@@ -293,7 +295,7 @@ public class StudentServlet extends HttpServlet {
      * @date 下午 17:07 2019-07-23/0023
      */
     private void reLikeQuery(HttpServletRequest request, HttpServletResponse response, Student student) throws SQLException, ServletException, IOException {
-        request.setAttribute("students", studentService.likeSelectStudent(student));
+        request.setAttribute("students" , studentService.likeSelectStudent(student));
         request.getRequestDispatcher("/jsp/studentmanager.jsp").forward(request, response);
     }
 

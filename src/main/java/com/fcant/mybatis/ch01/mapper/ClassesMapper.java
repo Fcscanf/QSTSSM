@@ -30,6 +30,7 @@ public interface ClassesMapper {
 
     /**
      * 方式一：嵌套结果(根据classId查询对应的班级信息,包括学生,老师 )
+     *
      * @param id
      * @return
      */
@@ -37,6 +38,7 @@ public interface ClassesMapper {
 
     /**
      * 方式二：嵌套查询(根据classId查询对应的班级信息,包括学生,老师 )
+     *
      * @param id
      * @return
      */

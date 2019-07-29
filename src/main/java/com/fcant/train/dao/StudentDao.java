@@ -43,7 +43,7 @@ public interface StudentDao {
      * 添加学生
      *
      * @param student
-     * @throws  SQLException
+     * @throws SQLException
      * @author Fcscanf
      * @date 下午 14:49 2019-07-22/0022
      */
@@ -54,7 +54,7 @@ public interface StudentDao {
      *
      * @param student
      * @return int
-     * @throws  SQLException
+     * @throws SQLException
      * @author Fcscanf
      * @date 下午 15:38 2019-07-22/0022
      */
@@ -74,8 +74,8 @@ public interface StudentDao {
      * 模糊查询
      *
      * @param student
-     * @throws SQLException
      * @return List<Student>
+     * @throws SQLException
      * @author Fcscanf
      * @date 上午 11:45 2019-07-23/0023
      */
@@ -85,8 +85,8 @@ public interface StudentDao {
      * 分页查询数据
      *
      * @param page
-     * @throws SQLException
      * @return List<Student>
+     * @throws SQLException
      * @author Fcscanf
      * @date 下午 18:24 2019-07-23/0023
      */
@@ -96,8 +96,8 @@ public interface StudentDao {
      * 删除学生
      *
      * @param student
-     * @throws SQLException
      * @return int
+     * @throws SQLException
      * @author Fcscanf
      * @date 上午 11:31 2019-07-24/0024
      */

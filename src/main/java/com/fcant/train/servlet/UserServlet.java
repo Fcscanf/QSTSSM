@@ -59,7 +59,7 @@ public class UserServlet extends HttpServlet {
      * @author Fcscanf
      * @date 下午 19:55 2019-07-22/0022
      */
-    private void login(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
+    private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         User user = new User();
         user.setUname(request.getParameter("username"));
@@ -70,7 +70,7 @@ public class UserServlet extends HttpServlet {
                 logger.info("Login Success!");
                 // 登录成功后存储用户信息
                 request.getSession().invalidate();
-                request.getSession().setAttribute("user", user);
+                request.getSession().setAttribute("user" , user);
                 //request.setAttribute("students", studentService.selectAllStudent());
                 //request.getRequestDispatcher("/jsp/studentmanager.jsp").forward(request, response);
                 // TODO:完成登录后执行分页查询进入管理页面-查询是写死的
@@ -101,7 +101,7 @@ public class UserServlet extends HttpServlet {
         user.setUname(request.getParameter("username"));
         user.setPassword(request.getParameter("password"));
         userService.addUser(user);
-        request.setAttribute("msg", "您已注册成功，请登录！");
+        request.setAttribute("msg" , "您已注册成功，请登录！");
         request.getRequestDispatcher("/jsp/userlogin.jsp").forward(request, response);
     }
 }

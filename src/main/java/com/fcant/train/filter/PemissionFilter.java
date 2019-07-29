@@ -22,8 +22,9 @@ public class PemissionFilter implements Filter {
     /**
      * 定义不需要拦截的URL放进String数组中
      */
-    private final String[] URI = {"/jsp/userlogin.jsp", "/jsp/userreg.jsp"
-            , "/login.do", "/reg.do"};
+    private final String[] URI = {"/jsp/userlogin.jsp" , "/jsp/userreg.jsp"
+            , "/login.do" , "/reg.do"};
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -49,8 +50,8 @@ public class PemissionFilter implements Filter {
                 chain.doFilter(request, response);
             } else {
                 // 未登录，跳转到登录页，并保证当前网页的url文件路径
-                req.setAttribute("msg", "您尚未登录，请登录");
-                req.setAttribute("return_uri", servletPath);
+                req.setAttribute("msg" , "您尚未登录，请登录");
+                req.setAttribute("return_uri" , servletPath);
                 RequestDispatcher rd = req.getRequestDispatcher("/jsp/userlogin.jsp");
                 rd.forward(req, res);
             }
@@ -68,7 +69,7 @@ public class PemissionFilter implements Filter {
      * @param servletPath
      * @return true
      * @author Fcscanf
-     * @date 上午 8:41 2019-07-24/0024 
+     * @date 上午 8:41 2019-07-24/0024
      */
     private boolean isPassUrl(String servletPath) {
         if (servletPath != null) {

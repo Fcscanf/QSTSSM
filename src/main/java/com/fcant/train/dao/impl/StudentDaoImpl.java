@@ -100,7 +100,7 @@ public class StudentDaoImpl implements StudentDao {
         statement.setString(2, student.getEmail());
         statement.setString(3, student.getPhone());
         statement.setString(4, student.getQq());
-        statement.setInt(5,student.getId());
+        statement.setInt(5, student.getId());
         int i = statement.executeUpdate();
         log.info("Update Student : " + student.toString());
         return i;
@@ -224,8 +224,8 @@ public class StudentDaoImpl implements StudentDao {
      * 将查询到的学生赋值进行抽取公共方法
      *
      * @param statement
-     * @throws SQLException
      * @return List<Student>
+     * @throws SQLException
      * @author Fcscanf
      * @date 下午 12:08 2019-07-23/0023
      */
@@ -248,8 +248,8 @@ public class StudentDaoImpl implements StudentDao {
      * 将查询到的学生信息赋值进行抽取
      *
      * @param statement
-     * @throws SQLException
      * @return student
+     * @throws SQLException
      * @author Fcscanf
      * @date 下午 12:09 2019-07-23/0023
      */

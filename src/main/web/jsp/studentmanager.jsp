@@ -19,22 +19,24 @@
     <title>学生管理</title>
     <script>
         <%--按条件检索--%>
+
         function query() {
             var select = $("select").val();
             var key = document.getElementById("key").value;
-            window.location.href = "<%=basePath%>query.action?select="+select+"&value="+key;
+            window.location.href = "<%=basePath%>query.action?select=" + select + "&value=" + key;
         }
 
         <%--分页查询-下一页--%>
+
         function pageQueryNext() {
             var size = document.getElementById("size").value;
-            window.location.href = "<%=basePath%>pageQuery.action?size="+size+"&option=next";
+            window.location.href = "<%=basePath%>pageQuery.action?size=" + size + "&option=next";
         }
 
         //分页查询-上一页
         function pageQueryPre() {
             var size = document.getElementById("size").value;
-            window.location.href = "<%=basePath%>pageQuery.action?size="+size+"&option=pro";
+            window.location.href = "<%=basePath%>pageQuery.action?size=" + size + "&option=pro";
         }
 
         //添加学生
@@ -46,9 +48,9 @@
         function deleteStu(delId) {
             if (confirm("确认删除ID为【" + delId + "】的学生吗？")) {
                 $.ajax({
-                    url:"<%=basePath%>delete.action?id="+delId,
-                    type:"post",
-                    success:function (data) {
+                    url: "<%=basePath%>delete.action?id=" + delId,
+                    type: "post",
+                    success: function (data) {
                         window.location.href = "<%=basePath%>pageQuery.action?size=5&option=0";
                     }
                 })
@@ -58,15 +60,20 @@
         //修改学生信息
         function editStu(id) {
             if (confirm("确认修改学号【" + id + "】的学生吗？")) {
-                window.location.href = "<%=basePath%>edit.action?id="+id;
+                window.location.href = "<%=basePath%>edit.action?id=" + id;
             }
 
         }
     </script>
 
     <style>
-        a {color:black;}
-        a:hover {color:red;}
+        a {
+            color: black;
+        }
+
+        a:hover {
+            color: red;
+        }
     </style>
 
 </head>
@@ -123,7 +130,9 @@
 
 <%--分页设计--%>
 <div align="right">
-    每页显示<input id="size" value="4" width="10px">条数据<button onclick="pageQueryPre()">上一页</button><button onclick="pageQueryNext()">下一页</button>
+    每页显示<input id="size" value="4" width="10px">条数据
+    <button onclick="pageQueryPre()">上一页</button>
+    <button onclick="pageQueryNext()">下一页</button>
 </div>
 </body>
 </html>

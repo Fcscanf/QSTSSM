@@ -21,7 +21,7 @@ public interface UserService {
      *
      * @param username
      * @return user
-     * @exception SQLException
+     * @throws SQLException
      * @author Fcscanf
      * @date 上午 10:35 2019-07-22/0022
      */
@@ -32,7 +32,7 @@ public interface UserService {
      *
      * @param user
      * @return boolean
-     * @exception SQLException
+     * @throws SQLException
      * @author Fcscanf
      * @date 上午 10:35 2019-07-22/0022
      */
@@ -42,7 +42,7 @@ public interface UserService {
      * 添加用户
      *
      * @param user
-     * @exception SQLException
+     * @throws SQLException
      * @author Fcscanf
      * @date 下午 14:25 2019-07-22/0022
      */

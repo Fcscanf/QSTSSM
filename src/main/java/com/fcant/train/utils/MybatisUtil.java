@@ -46,7 +46,7 @@ public class MybatisUtil {
         return sessionFactory.openSession();
     }
 
-    public static void testStuMapper(SqlSession sqlSession){
+    public static void testStuMapper(SqlSession sqlSession) {
         Student student = new Student();
         student.setId(1);
         student.setEmail("gmail");
@@ -71,7 +71,7 @@ public class MybatisUtil {
         sqlSession.close();
     }
 
-    public static void userMapperFind (SqlSession sqlSession) {
+    public static void userMapperFind(SqlSession sqlSession) {
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         System.out.println(mapper.findUser("Fcant"));
     }

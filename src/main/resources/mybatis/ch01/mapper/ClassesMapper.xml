@@ -20,11 +20,11 @@
     </select>
     <!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
     <resultMap type="com.fcant.mybatis.ch01.bean.Classes" id="ClassUnionQueryResultMap">
-        <id property="id" column="c_id" />
-        <result property="name" column="c_name" />
+        <id property="id" column="c_id"/>
+        <result property="name" column="c_name"/>
         <association property="teacher" javaType="com.fcant.mybatis.ch01.bean.Teacher">
-            <id property="id" column="t_id" />
-            <result property="name" column="t_name" />
+            <id property="id" column="t_id"/>
+            <result property="name" column="t_name"/>
         </association>
     </resultMap>
 
@@ -38,10 +38,10 @@
 
     <!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
     <resultMap type="com.fcant.mybatis.ch01.bean.Classes" id="ClassResultMap">
-        <id property="id" column="c_id" />
-        <result property="name" column="c_name" />
+        <id property="id" column="c_id"/>
+        <result property="name" column="c_name"/>
         <association property="teacher" column="teacher_id"
-                     select="getTeacher" />
+                     select="getTeacher"/>
     </resultMap>
 
     <select id="getTeacher" parameterType="int" resultType="com.fcant.mybatis.ch01.bean.Teacher">
@@ -83,8 +83,10 @@
     <resultMap type="com.fcant.mybatis.ch01.bean.Classes" id="ClassResultMap4">
         <id property="id" column="c_id"/>
         <result property="name" column="c_name"/>
-        <association property="teacher" column="teacher_id" javaType="com.fcant.mybatis.ch01.bean.Teacher" select="getTeacherReTeacher"></association>
-        <collection property="students" ofType="com.fcant.mybatis.ch01.bean.Student" column="c_id" select="getStudent"></collection>
+        <association property="teacher" column="teacher_id" javaType="com.fcant.mybatis.ch01.bean.Teacher"
+                     select="getTeacherReTeacher"></association>
+        <collection property="students" ofType="com.fcant.mybatis.ch01.bean.Student" column="c_id"
+                    select="getStudent"></collection>
     </resultMap>
 
     <select id="getTeacherReTeacher" parameterType="int" resultType="com.fcant.mybatis.ch01.bean.Teacher">

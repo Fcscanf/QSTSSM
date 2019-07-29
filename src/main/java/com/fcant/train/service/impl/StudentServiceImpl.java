@@ -229,17 +229,17 @@ public class StudentServiceImpl implements StudentService {
     }
 
     /**
-     * 校验邮箱 
+     * 校验邮箱
      *
      * @param email
      * @return true
-     *          校验通过返回true
-     *          校验失败返回false
+     * 校验通过返回true
+     * 校验失败返回false
      * @author Fcscanf
-     * @date 下午 17:10 2019-07-22/0022 
+     * @date 下午 17:10 2019-07-22/0022
      */
     public boolean checkEmail(String email) {
-        return Pattern.matches("^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$", email);
+        return Pattern.matches("^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$" , email);
     }
 
     /**
@@ -251,7 +251,7 @@ public class StudentServiceImpl implements StudentService {
      * @date 下午 17:14 2019-07-22/0022
      */
     public boolean checkPhone(String phone) {
-        return Pattern.matches("^((1[0-9][0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$", phone);
+        return Pattern.matches("^((1[0-9][0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$" , phone);
     }
 
     /**

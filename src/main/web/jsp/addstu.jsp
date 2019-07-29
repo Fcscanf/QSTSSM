@@ -18,6 +18,7 @@
     <title>学生信息添加</title>
     <script>
         <%--为更新按钮添加点击事件--%>
+
         function btnUpdate() {
             var name = document.getElementById("name").value;
             var email = document.getElementById("email").value;
@@ -27,12 +28,12 @@
                 url: "<%=basePath%>add.action",
                 type: "post",
                 data: {
-                    "name":name,
+                    "name": name,
                     "email": email,
                     "phone": phone,
                     "qq": qq
                 },
-                success:function (data) {
+                success: function (data) {
                     // TODO:完成修改后执行分页查询进入管理页面-查询是写死的
                     window.location.href = "<%=basePath%>pageQuery.action?size=5&option=0";
                 }
@@ -65,7 +66,8 @@
         </tr>
         <tr align="center">
             <td width="50%"><input class="btn-danger" type="reset" value="重置"></td>
-            <td width="50%"><input class="btn-secondary" onclick="btnUpdate()" type="button" value="添加" id="update"></td>
+            <td width="50%"><input class="btn-secondary" onclick="btnUpdate()" type="button" value="添加" id="update">
+            </td>
         </tr>
     </table>
 </div>

@@ -38,6 +38,7 @@ public class JDBCUtils {
 
     /**
      * 连接数据
+     *
      * @return
      */
     public static Connection getConnection() {
@@ -63,8 +64,8 @@ public class JDBCUtils {
         // 前面的参数代表？的位置，后面的值，代表传进去的值
         psm.setInt(1, 1);
         ResultSet rs = psm.executeQuery();
-        while(rs.next()) {
-            System.out.println(rs.getString(1)+"   " + rs.getString(2) +"   "+rs.getString(3));
+        while (rs.next()) {
+            System.out.println(rs.getString(1) + "   " + rs.getString(2) + "   " + rs.getString(3));
         }
     }
 
@@ -101,11 +102,11 @@ public class JDBCUtils {
      * @date 上午 10:44 2019-07-22/0022
      */
     public ResultSet executeQuery(String sql, Object[] param) {
-        try{
+        try {
             pstmt = getConnection().prepareStatement(sql);
-            if (param != null){
-                for (int i = 0;i<param.length;i++){
-                    pstmt.setObject(i+1,param[i]);
+            if (param != null) {
+                for (int i = 0; i < param.length; i++) {
+                    pstmt.setObject(i + 1, param[i]);
                 }
             }
             rs = pstmt.executeQuery();
@@ -126,10 +127,10 @@ public class JDBCUtils {
      */
     public int executeUpdate(String sql, Object[] param) {
         int num = 0;
-        try{
+        try {
             pstmt = conn.prepareStatement(sql);
-            if(param != null){
-                for (int i = 0;i<param.length;i++) {
+            if (param != null) {
+                for (int i = 0; i < param.length; i++) {
                     pstmt.setObject(i + 1, param[i]);
                 }
             }
