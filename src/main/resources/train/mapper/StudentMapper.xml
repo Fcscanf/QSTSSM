@@ -63,7 +63,7 @@
 
     <select id="pageQueryStudent" parameterType="com.fcant.train.bean.Page"
             resultMap="reStudent">
-        select * from t_student limit #{start} ,#{end}
+        select * from t_student limit #{start} ,#{size}
     </select>
 
     <delete id="deleteStu" parameterType="com.fcant.train.bean.Page">

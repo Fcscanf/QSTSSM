@@ -226,19 +226,18 @@ public class StudentServlet extends HttpServlet {
      * @date 下午 18:38 2019-07-23/0023
      */
     private void pageQuery(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-        Page page = new Page();
         String option = request.getParameter("option");
-        int start = 0;
         int userSetPageSize = Integer.parseInt(request.getParameter("size"));
         if (optionNext.equals(option)) {
             int tableTotal = studentService.tableTotal();
             Page curPage = PAGE_MESSAGE.get("1");
-            if (curPage.getStart() + userSetPageSize >= tableTotal) {
+            if (curPage.getEnd() >= tableTotal) {
                 curPage.setStart(tableTotal - userSetPageSize);
             } else {
-                curPage.setStart(curPage.getStart() + userSetPageSize);
+                curPage.setStart(curPage.getStart() + curPage.getSize());
             }
-            page.setEnd(start + userSetPageSize);
+            curPage.setSize(userSetPageSize);
+            curPage.setEnd(curPage.getStart() + curPage.getSize());
             PAGE_MESSAGE.put("1", curPage);
             rePageQuery(request, response, curPage);
         } else if (optionPre.equals(option)) {
@@ -249,12 +248,15 @@ public class StudentServlet extends HttpServlet {
             } else {
                 curPage.setStart(result);
             }
-            page.setEnd(start + userSetPageSize);
+            curPage.setSize(userSetPageSize);
+            curPage.setEnd(curPage.getStart() + userSetPageSize);
             PAGE_MESSAGE.put("1", curPage);
             rePageQuery(request, response, curPage);
         } else {
-            page.setStart(start);
-            page.setEnd(start + userSetPageSize);
+            Page page = new Page();
+            page.setStart(0);
+            page.setEnd(userSetPageSize);
+            page.setSize(userSetPageSize);
             PAGE_MESSAGE.put("1", page);
             rePageQuery(request, response, page);
         }

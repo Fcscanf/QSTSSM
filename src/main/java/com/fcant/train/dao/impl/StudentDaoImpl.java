@@ -179,7 +179,7 @@ public class StudentDaoImpl implements StudentDao {
         String sql = "select * from t_student limit ?,?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, page.getStart());
-        statement.setInt(2, page.getEnd());
+        statement.setInt(2, page.getSize());
         return commonListStudent(statement);
     }
 
