@@ -31,13 +31,13 @@
 
         function pageQueryNext() {
             var size = document.getElementById("size").value;
-            window.location.href = "<%=basePath%>pageQuery.action?size=" + size + "&option=next";
+            window.location.href = "<%=basePath%>pageQuery.action?option=next&size=" + size;
         }
 
         //分页查询-上一页
         function pageQueryPre() {
             var size = document.getElementById("size").value;
-            window.location.href = "<%=basePath%>pageQuery.action?size=" + size + "&option=pro";
+            window.location.href = "<%=basePath%>pageQuery.action?option=pro&size=" + size;
         }
 
         //添加学生
@@ -47,12 +47,13 @@
 
         //删除学生
         function deleteStu(delId) {
+            var size = document.getElementById("size").value;
             if (confirm("确认删除ID为【" + delId + "】的学生吗？")) {
                 $.ajax({
                     url: "<%=basePath%>delete.action?id=" + delId,
                     type: "post",
                     success: function (data) {
-                        window.location.href = "<%=basePath%>pageQuery.action?size=5&option=0";
+                        window.location.href = "<%=basePath%>pageQuery.action?option=0&size="+size;
                     }
                 })
             }
@@ -109,7 +110,7 @@
                     success: function (result) {
                         alert("你已成功删除【 " + stuNames + " 】的信息！");
                         //回到当前页
-                        window.location.href = "<%=basePath%>pageQuery.action?option=0&size="+size;
+                        window.location.href = "<%=basePath%>pageQuery.action?option=next&size="+size;
                     }
                 });
             }
