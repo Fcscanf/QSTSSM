@@ -95,6 +95,7 @@
     <button onclick="query()">Search</button>
 </div>
 <div align="right">
+    <button class="btn-success" onclick="">批量删除学生信息</button>
     <button class="btn-warning" onclick="addStu()">添加学生信息</button>
 </div>
 
@@ -103,18 +104,21 @@
     <table width="80%" border="1px" align="center" cellpadding="0"
            cellspacing="0" class="table table-secondary">
         <thead>
+
         <tr align="center">
-            <th width="10%" scope="col">编号</th>
+            <th width="5%"><input type="checkbox" id="check_all"/></th>
+            <th width="5%" scope="col">编号</th>
             <th width="15%" scope="col">姓名</th>
             <th width="20%" scope="col">邮箱</th>
             <th width="15%" scope="col">手机</th>
             <th width="15%" scope="col">QQ</th>
-            <th width="20%" scope="col">操作</th>
+            <th width="15%" scope="col">操作</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach var="student" items="${students}">
             <tr align="center">
+                <td><input type='checkbox' class='check_item'/></td>
                 <td scope="row">${student.id}</td>
                 <td>${student.name}</td>
                 <td>${student.email}</td>
