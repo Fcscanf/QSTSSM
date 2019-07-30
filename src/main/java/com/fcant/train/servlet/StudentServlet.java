@@ -231,18 +231,18 @@ public class StudentServlet extends HttpServlet {
             student.setName(value);
             reLikeQuery(request, response, student);
         } else if (EMAIL.equals(selectType)) {
-            student.setName("");
+//            student.setName("");
             student.setEmail(value);
             reLikeQuery(request, response, student);
         } else if (PHONE.equals(selectType)) {
-            student.setName("");
-            student.setEmail("");
+//            student.setName("");
+//            student.setEmail("");
             student.setPhone(value);
             reLikeQuery(request, response, student);
         } else if (QQ.equals(selectType)) {
-            student.setName("");
-            student.setEmail("");
-            student.setPhone("");
+//            student.setName("");
+//            student.setEmail("");
+//            student.setPhone("");
             student.setQq(value);
             reLikeQuery(request, response, student);
         }
