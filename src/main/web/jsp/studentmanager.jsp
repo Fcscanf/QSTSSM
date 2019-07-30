@@ -15,6 +15,7 @@
 <head>
     <link href="<%=basePath%>bootstrap-4.1.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="<%=basePath%>jquery-3.3.1/jquery-3.3.1.min.js"></script>
+    <script src="<%=basePath%>bootstrap-4.1.3-dist/js/bootstrap.js" rel="stylesheet"></script>
     <base href="<%=basePath%>">
     <title>学生管理</title>
     <script>
@@ -64,6 +65,20 @@
             }
 
         }
+
+        // 复选框的全选和全不选
+        $(function() {
+            $("#check_all").click(function() {
+                $(":checkbox[name='check_item']").prop("checked", this.checked); // this指代的你当前选择的这个元素的JS对象
+            });
+        });
+
+        //单选选满自动选择全选
+        $(document).on("click",".check_item",function () {
+            //判断当前选择的是否满足当前页元素个数
+            var flag = $(".check_item:checked").length==$(".check_item").length;
+            $("#check_all").prop("checked",flag);
+        })
     </script>
 
     <style>
@@ -118,7 +133,7 @@
         <tbody>
         <c:forEach var="student" items="${students}">
             <tr align="center">
-                <td><input type='checkbox' class='check_item'/></td>
+                <td><input type='checkbox' name='check_item'/></td>
                 <td scope="row">${student.id}</td>
                 <td>${student.name}</td>
                 <td>${student.email}</td>
