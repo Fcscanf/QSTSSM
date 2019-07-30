@@ -18,6 +18,10 @@ public class Product {
     private String name;
     private int number;
     private double price;
-    @Autowired
     private Category category;
+
+    @Autowired
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }
