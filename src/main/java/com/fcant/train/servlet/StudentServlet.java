@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -78,6 +79,37 @@ public class StudentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
+    }
+
+    /**
+     * 进行学生信息的批量删除
+     *
+     * @param request
+     * @param response
+     * @throws IOException
+     * @throws SQLException
+     * @return int
+     * @author Fcscanf
+     * @date 上午 11:28 2019-07-30/0030
+     */
+    private int delStuBatch(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+        List<Integer> ids = new ArrayList<>();
+        String del_ids = request.getParameter("ids");
+        int result = 0;
+        if (del_ids.contains("-")) {
+            String[] str_ids = del_ids.split("-");
+            //组装id的集合
+            for (String s : str_ids) {
+                ids.add(Integer.parseInt(s));
+            }
+            result = studentService.delStuBatch(ids);
+        } else {
+            Integer id = Integer.parseInt(del_ids);
+            Student student = new Student();
+            student.setId(id);
+            result = studentService.deleteStu(student);
+        }
+        return result;
     }
 
     /**

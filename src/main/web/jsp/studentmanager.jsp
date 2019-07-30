@@ -79,6 +79,41 @@
             var flag = $(".check_item:checked").length==$(".check_item").length;
             $("#check_all").prop("checked",flag);
         })
+
+        //批量删除按钮添加事件
+        function delBatchStu() {
+            var stuNames = "";
+            var del_ids = "";
+            var size = document.getElementById("size").value;
+            $('table input:checkbox:gt(0)').each(function(){
+                if(this.checked==true){
+                    stuNames += this.value + ',';
+                    del_ids += this.id + '-';
+                }
+            });
+            /* */
+            // $.each($(".check_item:checked"), function () {
+            //     stuNames += $(this).parents("tr").find("td:eq(2)").text() + ",";
+            //     //组装id
+            //     del_ids += $(this).parents("tr").find("td:eq(1)").text() + "-";
+            // });
+            //去除empNames多余的”,“
+            stuNames = stuNames.substring(0, stuNames.length - 1);
+            //去除员工id组装多余的”-“
+            del_ids = del_ids.substring(0, del_ids.length - 1);
+            if (confirm("确认删除【 " + stuNames + " 】吗？")) {
+                //发送ajax请求进行删除
+                $.ajax({
+                    url: "<%=basePath%>delStuBatch.action?ids="+del_ids,
+                    type: "post",
+                    success: function (result) {
+                        alert("你已成功删除【 " + stuNames + " 】的信息！");
+                        //回到当前页
+                        window.location.href = "<%=basePath%>pageQuery.action?option=0&size="+size;
+                    }
+                });
+            }
+        };
     </script>
 
     <style>
@@ -110,7 +145,7 @@
     <button onclick="query()">Search</button>
 </div>
 <div align="right">
-    <button class="btn-success" onclick="">批量删除学生信息</button>
+    <button class="btn-success" onclick="delBatchStu()">批量删除学生信息</button>
     <button class="btn-warning" onclick="addStu()">添加学生信息</button>
 </div>
 
@@ -133,7 +168,7 @@
         <tbody>
         <c:forEach var="student" items="${students}">
             <tr align="center">
-                <td><input type='checkbox' name='check_item'/></td>
+                <td><input type='checkbox' name='check_item' id="${student.id}" value="${student.name}"/></td>
                 <td scope="row">${student.id}</td>
                 <td>${student.name}</td>
                 <td>${student.email}</td>

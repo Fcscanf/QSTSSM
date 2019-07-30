@@ -224,6 +224,7 @@ public class StudentServiceImpl implements StudentService {
         SqlSession sqlSession = MybatisUtil.initMybatis();
         StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
         int delStuBatch = mapper.delStuBatch(ids);
+        closeSqlSession(sqlSession);
         return delStuBatch;
     }
 
