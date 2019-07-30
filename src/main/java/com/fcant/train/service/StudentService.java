@@ -94,6 +94,17 @@ public interface StudentService {
     public int deleteStu(Student student) throws SQLException, IOException;
 
     /**
+     * 学生信息的批量删除
+     *
+     * @param ids
+     * @return int
+     * @throws IOException
+     * @author Fcscanf
+     * @date 上午 10:39 2019-07-30/0030
+     */
+    public int delStuBatch(List<Integer> ids) throws IOException;
+
+    /**
      * 查询表的总条目数
      *
      * @return int

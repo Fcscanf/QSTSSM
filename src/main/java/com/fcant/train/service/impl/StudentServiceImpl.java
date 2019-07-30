@@ -211,6 +211,23 @@ public class StudentServiceImpl implements StudentService {
     }
 
     /**
+     * 学生信息的批量删除
+     *
+     * @param ids
+     * @throws IOException
+     * @return int
+     * @author Fcscanf
+     * @date 上午 10:39 2019-07-30/0030
+     */
+    @Override
+    public int delStuBatch(List<Integer> ids) throws IOException {
+        SqlSession sqlSession = MybatisUtil.initMybatis();
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        int delStuBatch = mapper.delStuBatch(ids);
+        return delStuBatch;
+    }
+
+    /**
      * 查询表的总条目数
      *
      * @return int

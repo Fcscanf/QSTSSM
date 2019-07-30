@@ -89,6 +89,13 @@
         delete from t_student s where s.id=#{id}
     </delete>
 
+    <delete id="delStuBatch" parameterType="list">
+        delete from t_student s  where s.id in
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
     <select id="tableTotal" resultType="java.lang.Integer">
         select count(*) from t_student
     </select>

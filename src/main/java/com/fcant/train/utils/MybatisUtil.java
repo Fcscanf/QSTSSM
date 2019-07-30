@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,7 +52,7 @@ public class MybatisUtil {
 //        student.setName("古");
 //        student.setEmail("gmail");
 //        student.setPhone("17");
-        student.setQq("30");
+//        student.setQq("30");
 
         StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
 //        Page page = new Page();
@@ -65,10 +66,19 @@ public class MybatisUtil {
 //        System.out.println(tableTotal);
 //        List<Student> students = studentMapper.likeSelectStudentById(student);
 //        List<Student> students = studentMapper.likeSelectStudentByName(student);
-        List<Student> students = studentMapper.likeSelectByIF(student);
-        for (Student reStudent : students) {
-            System.out.println(reStudent);
-        }
+
+        //多条件查询测试
+//        List<Student> students = studentMapper.likeSelectByIF(student);
+//        for (Student reStudent : students) {
+//            System.out.println(reStudent);
+//        }
+
+        //批量删除测试
+        List<Integer> ids = new ArrayList<>();
+        ids.add(15);
+        ids.add(18);
+        int delStuBatch = studentMapper.delStuBatch(ids);
+        System.out.println("已删除 " + delStuBatch + " 条数据");
         sqlSession.commit();
         sqlSession.close();
     }

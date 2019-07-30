@@ -158,6 +158,16 @@ public interface StudentMapper {
     public int deleteStu(Student student);
 
     /**
+     * 学生信息的批量删除
+     *
+     * @param ids
+     * @return int
+     * @author Fcscanf
+     * @date 上午 10:39 2019-07-30/0030
+     */
+    public int delStuBatch(List<Integer> ids);
+
+    /**
      * 查询表的总条目数
      *
      * @return int
