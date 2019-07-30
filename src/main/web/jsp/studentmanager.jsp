@@ -1,3 +1,4 @@
+<%@ page import="com.fcant.train.bean.User" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -129,6 +130,10 @@
 
 </head>
 <body background="img/JadeFairyland.jpg">
+<div align="right">
+    <% User user = (User) request.getSession().getAttribute("user"); %>
+    <h5>Welcome ${user.uname} Login in!</h5><a href="<%=basePath%>quit.do">退出登录</a>
+</div>
 <div align="center">
     <h3>学生信息管理</h3>
 </div>

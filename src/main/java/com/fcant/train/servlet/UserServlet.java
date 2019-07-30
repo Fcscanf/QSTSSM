@@ -50,6 +50,21 @@ public class UserServlet extends HttpServlet {
     }
 
     /**
+     * 用户退出登录操作
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @author Fcscanf
+     * @date 下午 15:10 2019-07-30/0030
+     */
+    private void quit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getSession().removeAttribute("user");
+        request.setAttribute("msg", "您已退出登录！");
+        request.getRequestDispatcher("/jsp/userlogin.jsp").forward(request, response);
+    }
+
+    /**
      * 用户登录
      *
      * @param request
