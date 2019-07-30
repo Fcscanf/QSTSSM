@@ -78,7 +78,7 @@
         //单选选满自动选择全选
         $(document).on("click",".check_item",function () {
             //判断当前选择的是否满足当前页元素个数
-            var flag = $("input[type='checkbox']:checked").length==$(".check_item").length;
+            var flag = $(".check_item:checked").length==$(".check_item").length;
             $("#check_all").prop("checked",flag);
         });
 
