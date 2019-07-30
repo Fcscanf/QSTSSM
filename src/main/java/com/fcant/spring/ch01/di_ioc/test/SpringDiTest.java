@@ -14,7 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @description
  * @date 下午 20:53 2019-07-29/0029
  */
-public class SpringTest {
+public class SpringDiTest {
     public static void main(String[] args) {
         // 读取applicationContext.xml配置文件
         ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"spring/ch01/applicationContext.xml"});
