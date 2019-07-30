@@ -78,9 +78,9 @@
         //单选选满自动选择全选
         $(document).on("click",".check_item",function () {
             //判断当前选择的是否满足当前页元素个数
-            var flag = $(".check_item:checked").length==$(".check_item").length;
+            var flag = $("input[type='checkbox']:checked").length==$(".check_item").length;
             $("#check_all").prop("checked",flag);
-        })
+        });
 
         //批量删除按钮添加事件
         function delBatchStu() {
@@ -99,7 +99,7 @@
             //     //组装id
             //     del_ids += $(this).parents("tr").find("td:eq(1)").text() + "-";
             // });
-            //去除empNames多余的”,“
+            //去除stuNames多余的”,“
             stuNames = stuNames.substring(0, stuNames.length - 1);
             //去除员工id组装多余的”-“
             del_ids = del_ids.substring(0, del_ids.length - 1);
@@ -115,7 +115,7 @@
                     }
                 });
             }
-        };
+        }
     </script>
 
     <style>
@@ -174,7 +174,7 @@
         <tbody>
         <c:forEach var="student" items="${students}">
             <tr align="center">
-                <td><input type='checkbox' name='check_item' id="${student.id}" value="${student.name}"/></td>
+                <td><input class="check_item" type='checkbox' name='check_item' id="${student.id}" value="${student.name}"/></td>
                 <td scope="row">${student.id}</td>
                 <td>${student.name}</td>
                 <td>${student.email}</td>
