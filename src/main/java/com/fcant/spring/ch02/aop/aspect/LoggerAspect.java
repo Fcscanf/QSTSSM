@@ -14,8 +14,15 @@ import org.aspectj.lang.ProceedingJoinPoint;
 public class LoggerAspect {
     public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
         System.out.println("start log:" + joinPoint.getSignature().getName());
+        // 运行核心业务类之前的时间
+        long startTime = System.currentTimeMillis();
         Object object = joinPoint.proceed();
         System.out.println("end log:" + joinPoint.getSignature().getName());
+        // 运行核心业务类之后的时间
+        long endTime = System.currentTimeMillis();
+        // 总运行时间
+        long time = endTime - startTime;
+        System.out.println("耗费时间：" + time);
 
         return object;
     }

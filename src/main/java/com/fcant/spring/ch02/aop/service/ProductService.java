@@ -11,6 +11,10 @@ package com.fcant.spring.ch02.aop.service;
  */
 public class ProductService {
     public void doSomeService() {
-        System.out.println("doSomeService");
+        String str = "";
+        for (int i = 0; i < 1000; i++) {
+            str += i;
+        }
+        System.out.println("doSomeService:" + str);
     }
 }
