@@ -32,6 +32,25 @@
         where s.id=#{id}
     </update>
 
+    <select id="likeSelectByIF" parameterType="com.fcant.train.bean.Student" resultMap="reStudent">
+        select * from t_student where 1=1
+        <if test="id != null and id != 0">
+            and id like concat('%', #{id} ,'%')
+        </if>
+        <if test="name != null and name != ''">
+            and name like concat('%', #{name} ,'%')
+        </if>
+        <if test="email != null and email != ''">
+            and email like concat('%', #{email} ,'%')
+        </if>
+        <if test="phone != null and phone != ''">
+            and phone like concat('%', #{phone} ,'%')
+        </if>
+        <if test="qq != null and qq != ''">
+            and qq like concat('%', #{qq} ,'%')
+        </if>
+    </select>
+
     <select id="selectAllStudent" resultMap="reStudent">
         select * from t_student
     </select>

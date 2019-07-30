@@ -1,6 +1,5 @@
 package com.fcant.train.utils;
 
-import com.fcant.train.bean.Page;
 import com.fcant.train.bean.Student;
 import com.fcant.train.mapper.StudentMapper;
 import com.fcant.train.mapper.UserMapper;
@@ -48,22 +47,25 @@ public class MybatisUtil {
 
     public static void testStuMapper(SqlSession sqlSession) {
         Student student = new Student();
-        student.setId(1);
-        student.setEmail("gmail");
-        student.setName("樊");
-        Page page = new Page();
-        page.setStart(0);
-        page.setEnd(3);
+//        student.setId(1);
+//        student.setName("古");
+//        student.setEmail("gmail");
+//        student.setPhone("17");
+        student.setQq("30");
+
         StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
-        //Student studentByName = studentMapper.findStudentByName(student);
-        //Student studentById = studentMapper.findStudentById(student);
-        //List<Student> students = studentMapper.selectAllStudent();
-        //List<Student> students = studentMapper.pageQueryStudent(page);
-        //int tableTotal = studentMapper.tableTotal();
-        //System.out.println(tableTotal);
-        //List<Student> students = studentMapper.likeSelectStudentById(student);
-        //List<Student> students = studentMapper.likeSelectStudentByName(student);
-        List<Student> students = studentMapper.likeSelectStudentByEmail(student);
+//        Page page = new Page();
+//        page.setStart(0);
+//        page.setEnd(3);
+//        Student studentByName = studentMapper.findStudentByName(student);
+//        Student studentById = studentMapper.findStudentById(student);
+//        List<Student> students = studentMapper.selectAllStudent();
+//        List<Student> students = studentMapper.pageQueryStudent(page);
+//        int tableTotal = studentMapper.tableTotal();
+//        System.out.println(tableTotal);
+//        List<Student> students = studentMapper.likeSelectStudentById(student);
+//        List<Student> students = studentMapper.likeSelectStudentByName(student);
+        List<Student> students = studentMapper.likeSelectByIF(student);
         for (Student reStudent : students) {
             System.out.println(reStudent);
         }

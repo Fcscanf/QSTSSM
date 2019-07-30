@@ -71,6 +71,16 @@ public interface StudentMapper {
     public List<Student> selectAllStudent();
 
     /**
+     * 根据类属性进行进行Mybatis的动态SQL查询
+     *
+     * @param student
+     * @return List<Student>
+     * @author Fcscanf
+     * @date 上午 9:09 2019-07-30/0030 
+     */
+    public List<Student> likeSelectByIF(Student student);
+
+    /**
      * 模糊查询-根据学生ID
      *
      * @param student
