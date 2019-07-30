@@ -1,6 +1,9 @@
 package com.fcant.spring.ch02.aop.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
 
 /**
  * LoggerAspect
@@ -11,7 +14,11 @@ import org.aspectj.lang.ProceedingJoinPoint;
  * @description
  * @date 下午 18:45 2019-07-30/0030
  */
+@Aspect
+@Component
 public class LoggerAspect {
+
+    @Around(value = "execution(* com.fcant.spring.ch02.aop.service.ProductService.*(..))")
     public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
         System.out.println("start log:" + joinPoint.getSignature().getName());
         // 运行核心业务类之前的时间

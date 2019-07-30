@@ -16,14 +16,21 @@
 
     <context:component-scan base-package="com.fcant.spring.ch01.di_ioc.bean" />
     <!-- 声明业务对象 -->
-    <bean name="s" class="com.fcant.spring.ch02.aop.service.ProductService"/>
+<!--    <bean name="s" class="com.fcant.spring.ch02.aop.service.ProductService"/>-->
     <!-- 声明日志切面 -->
     <bean id="loggerAspect" class="com.fcant.spring.ch02.aop.aspect.LoggerAspect" />
-    <aop:config>
-        <aop:pointcut expression="execution(* com.fcant.spring.ch02.aop.service.ProductService.*(..))"
-                      id="loggerCutpoint" />
-        <aop:aspect id="logAspect" ref="loggerAspect">
-            <aop:around method="log" pointcut-ref="loggerCutpoint" />
-        </aop:aspect>
-    </aop:config>
+<!--    <aop:config>-->
+<!--        <aop:pointcut expression="execution(* com.fcant.spring.ch02.aop.service.ProductService.*(..))"-->
+<!--                      id="loggerCutpoint" />-->
+<!--        <aop:aspect id="logAspect" ref="loggerAspect">-->
+<!--            <aop:around method="log" pointcut-ref="loggerCutpoint" />-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+
+    <!-- 扫描切面类 -->
+    <context:component-scan base-package="com.fcant.spring.ch02.aop.aspect"></context:component-scan>
+    <!-- 扫描业务类 -->
+    <context:component-scan base-package="com.fcant.spring.ch02.aop.service"></context:component-scan>
+    <!-- Spring为了支撑AOP运行，用到了动态代理这种设计模式，启动对AOP的支持，找到被注解了的切面类，进行切面配置 -->
+    <aop:aspectj-autoproxy />
 </beans>
