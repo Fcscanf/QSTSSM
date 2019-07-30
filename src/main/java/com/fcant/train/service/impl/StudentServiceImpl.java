@@ -146,27 +146,28 @@ public class StudentServiceImpl implements StudentService {
         //return studentDao.likeSelectStudent(student);
         SqlSession sqlSession = MybatisUtil.initMybatis();
         StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
-        if (!(student.getId() == 0)) {
-            List<Student> students = mapper.likeSelectStudentById(student);
-            closeSqlSession(sqlSession);
-            return students;
-        } else if (!student.getName().isEmpty()) {
-            List<Student> students = mapper.likeSelectStudentByName(student);
-            closeSqlSession(sqlSession);
-            return students;
-        } else if (!student.getEmail().isEmpty()) {
-            List<Student> students = mapper.likeSelectStudentByEmail(student);
-            closeSqlSession(sqlSession);
-            return students;
-        } else if (!student.getPhone().isEmpty()) {
-            List<Student> students = mapper.likeSelectStudentByPhone(student);
-            closeSqlSession(sqlSession);
-            return students;
-        } else {
-            List<Student> students = mapper.likeSelectStudentByQq(student);
-            closeSqlSession(sqlSession);
-            return students;
-        }
+//        if (!(student.getId() == 0)) {
+//            List<Student> students = mapper.likeSelectStudentById(student);
+//            closeSqlSession(sqlSession);
+//            return students;
+//        } else if (!student.getName().isEmpty()) {
+//            List<Student> students = mapper.likeSelectStudentByName(student);
+//            closeSqlSession(sqlSession);
+//            return students;
+//        } else if (!student.getEmail().isEmpty()) {
+//            List<Student> students = mapper.likeSelectStudentByEmail(student);
+//            closeSqlSession(sqlSession);
+//            return students;
+//        } else if (!student.getPhone().isEmpty()) {
+//            List<Student> students = mapper.likeSelectStudentByPhone(student);
+//            closeSqlSession(sqlSession);
+//            return students;
+//        } else {
+//            List<Student> students = mapper.likeSelectStudentByQq(student);
+//            closeSqlSession(sqlSession);
+//            return students;
+//        }
+        return mapper.likeSelectByIF(student);
     }
 
     /**
