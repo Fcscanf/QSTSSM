@@ -1,7 +1,8 @@
 package com.fcant.spring.ch01.di_ioc.bean;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.annotation.Resource;
 
 /**
  * Product
@@ -18,10 +19,6 @@ public class Product {
     private String name;
     private int number;
     private double price;
+    @Resource(name="c")
     private Category category;
-
-    @Autowired
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 }
