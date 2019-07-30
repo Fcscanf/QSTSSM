@@ -7,6 +7,8 @@
 <!--        <setting name="lazyLoadingEnabled" value="false"/>-->
         <!--当设置为'true'的时候,懒加载的对象可能被任何懒属性全部加载,否则,每个属性都按需加载-->
 <!--        <setting name="aggressiveLazyLoading" value="true"/>-->
+<!--        开启二级缓存-->
+<!--        <setting name="cacheEnabled" value="true"/>-->
 <!--    </settings>-->
 
     <!-- 引用db.properties配置文件 -->
