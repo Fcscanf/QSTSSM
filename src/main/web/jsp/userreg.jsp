@@ -24,6 +24,9 @@
 <div align="center" style="margin-top: 70px">
     <h2>用户注册</h2>
 </div>
+<div class="text-danger" align="center">
+    <h5>${msg}</h5>
+</div>
 <div align="center" style="margin-top: 30px" class="container">
     <div style="align-self: center">
         <form action="<%=basePath%>reg.do" method="post">

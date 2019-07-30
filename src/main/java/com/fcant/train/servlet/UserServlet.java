@@ -76,8 +76,9 @@ public class UserServlet extends HttpServlet {
                 // TODO:完成登录后执行分页查询进入管理页面-查询是写死的
                 response.sendRedirect(request.getContextPath() + "/pageQuery.action?size=5&option=0");
             } else {
-                // TODO:登录错误信息提示-待完善
-                response.sendRedirect(request.getContextPath() + "/jsp/userlogin.jsp");
+                request.setAttribute("msg", "用户名或密码错误，请重新登录");
+                request.getRequestDispatcher("/jsp/userlogin.jsp").forward(request, response);
+                //response.sendRedirect(request.getContextPath() + "/jsp/userlogin.jsp");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -85,7 +86,7 @@ public class UserServlet extends HttpServlet {
     }
 
     /**
-     * 用户注册并登录
+     * 用户注册
      *
      * @param request
      * @param response
@@ -100,8 +101,13 @@ public class UserServlet extends HttpServlet {
         User user = new User();
         user.setUname(request.getParameter("username"));
         user.setPassword(request.getParameter("password"));
-        userService.addUser(user);
-        request.setAttribute("msg" , "您已注册成功，请登录！");
-        request.getRequestDispatcher("/jsp/userlogin.jsp").forward(request, response);
+        if (userService.findUser(user.getUname()) == null) {
+            userService.addUser(user);
+            request.setAttribute("msg", "您已注册成功，请登录！");
+            request.getRequestDispatcher("/jsp/userlogin.jsp").forward(request, response);
+        } else {
+            request.setAttribute("msg" , "当前用户名已存在，请更换用户名注册或者请登录！");
+            request.getRequestDispatcher("/jsp/userreg.jsp").forward(request, response);
+        }
     }
 }

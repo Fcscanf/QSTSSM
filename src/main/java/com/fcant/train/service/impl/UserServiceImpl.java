@@ -53,7 +53,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean checkUser(User user) throws SQLException, IOException {
         User findUser = findUser(user.getUname());
-        if (findUser.getPassword().equals(user.getPassword())) {
+        if (findUser == null) {
+            return false;
+        } else if (findUser.getPassword().equals(user.getPassword())) {
             return true;
         } else {
             return false;
