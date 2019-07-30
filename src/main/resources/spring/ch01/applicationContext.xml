@@ -14,6 +14,8 @@
    http://www.springframework.org/schema/context
    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
+    <context:annotation-config/>
+
     <bean name="c" class="com.fcant.spring.ch01.di_ioc.bean.Category">
         <property name="name" value="category 1" />
     </bean>
@@ -22,7 +24,7 @@
         <property name="name" value="Apple Watch" />
         <property name="number" value="2" />
         <property name="price" value="8800" />
-        <property name="category" ref="c" />
+        <!--<property name="category" ref="c" />-->
     </bean>
 
 </beans>
