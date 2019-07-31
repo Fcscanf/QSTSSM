@@ -30,7 +30,7 @@
         </javaTypeResolver>
 
         <!-- targetProject:生成POJO/Bean类的位置 -->
-        <javaModelGenerator targetPackage="com.fcant.mybatis.ch01.bean"
+        <javaModelGenerator targetPackage="com.fcant.ss.bean"
                             targetProject=".\src\main\java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
@@ -39,7 +39,7 @@
         </javaModelGenerator>
 
         <!-- targetProject:mapper映射文件生成的位置 -->
-        <sqlMapGenerator targetPackage="mybatis\ch01\mapper"
+        <sqlMapGenerator targetPackage="ss\mapper"
                          targetProject=".\src\main\resources">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
@@ -47,7 +47,7 @@
 
         <!-- targetPackage：mapper接口生成的位置 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.fcant.mybatis.ch01.mapper"
+                             targetPackage="com.fcant.ss.mapper"
                              targetProject=".\src\main\java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
@@ -56,7 +56,7 @@
         <!--schema属性标签可以解决JDBC连接MySQL找不到主键的问题-->
         <!--catalog属性标签解决JDBC对catalog的支持性而不能识别数据库的主键，但是会在映射文件表前自动生成"数据库名称.."-->
         <!--        <table tableName="busdata" domainObjectName="BusData" schema="itbus"></table>-->
-        <table tableName="orders" domainObjectName="Order"
+        <table tableName="ss_product" domainObjectName="Product"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
