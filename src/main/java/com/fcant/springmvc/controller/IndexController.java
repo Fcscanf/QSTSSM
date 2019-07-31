@@ -43,4 +43,16 @@ public class IndexController{
         ModelAndView mav = new ModelAndView("check");
         return mav;
     }
+
+    @RequestMapping("/clear")
+    public ModelAndView clear(HttpSession session) {
+        Integer i = (Integer) session.getAttribute("count");
+        if (null == i) {
+            ModelAndView mav = new ModelAndView("check");
+            return mav;
+        }
+        session.removeAttribute("count");
+        ModelAndView mav = new ModelAndView("check");
+        return mav;
+    }
 }
