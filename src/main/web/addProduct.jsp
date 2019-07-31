@@ -16,7 +16,7 @@
     <title>添加产品</title>
 </head>
 <body>
-<form action="addProduct">
+<form action="addProduct" method="post">
     产品名称：<input type="text" name="name" value=""><br>
     产品价格：<input type="text" name="price" value=""><br>
     <input type="submit" value="增加商品">
