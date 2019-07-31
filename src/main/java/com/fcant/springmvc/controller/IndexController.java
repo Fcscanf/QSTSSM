@@ -1,7 +1,7 @@
 package com.fcant.springmvc.controller;
 
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,8 +15,10 @@ import javax.servlet.http.HttpServletResponse;
  * @description
  * @date 下午 19:56 2019-07-31/0031
  */
-public class IndexController implements Controller {
-    @Override
+@org.springframework.stereotype.Controller
+public class IndexController{
+
+    @RequestMapping("/index")
     public ModelAndView handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         ModelAndView mav = new ModelAndView("index");
         mav.addObject("message", "Hello SpringMVC");
