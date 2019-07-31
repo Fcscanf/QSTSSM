@@ -5,7 +5,7 @@
          version="4.0">
 
     <welcome-file-list>
-        <welcome-file>addProduct.jsp</welcome-file>
+        <welcome-file>upload.jsp</welcome-file>
 <!--        <welcome-file>jsp/userlogin.jsp</welcome-file>-->
     </welcome-file-list>
 <!--    <filter>-->
@@ -36,6 +36,10 @@
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
         <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.jpg</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>UserServlet</servlet-name>
