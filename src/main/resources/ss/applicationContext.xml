@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+   http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/aop
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+   http://www.springframework.org/schema/tx
+   http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <context:component-scan base-package="com.fcant.ss" />
+    <context:annotation-config/>
+
+<!--    注册sqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+<!--        配置数据源-->
+        <property name="dataSource" ref="dataSource"/>
+<!--        配置读取mybatis-config.xml文件-->
+        <property name="configLocation" value="classpath:ss/mybatis-config.xml"/>
+    </bean>
+
+    <!-- 配置数据源 -->
+    <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+        <!-- MySQL数据库驱动 -->
+        <property value="com.mysql.cj.jdbc.Driver" name="driverClassName"/>
+        <!-- 连接数据库的URL -->
+        <property value="jdbc:mysql:///ssm?serverTimezone=UTC" name="url"/>
+        <!-- 连接数据库的用户名 -->
+        <property value="root" name="username"/>
+        <!-- 连接数据库的密码 -->
+        <property value="123456" name="password"/>
+    </bean>
+
+<!--    Mapper的代理对象-->
+    <bean id="mapperFactoryBean" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+<!--        指定映射的接口-->
+        <property name="mapperInterface" value="com.fcant.ss.mapper.ProductMapper"/>
+    </bean>
+</beans>
