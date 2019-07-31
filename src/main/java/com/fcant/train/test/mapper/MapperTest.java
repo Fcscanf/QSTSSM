@@ -18,6 +18,6 @@ public class MapperTest {
     public static void main(String[] args) throws IOException {
         SqlSession sqlSession = MybatisUtil.initMybatis();
         //MybatisUtil.userMapperFind(sqlSession);
-        MybatisUtil.testStuMapper(sqlSession);
+        MybatisUtil.userMapperFind(sqlSession);
     }
 }
